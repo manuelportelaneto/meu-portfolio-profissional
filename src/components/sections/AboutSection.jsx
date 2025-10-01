@@ -82,7 +82,7 @@ const AboutSection = () => {
                 <p className="text-gray-300 italic">
                   "A melhor tecnologia é aquela que resolve problemas reais e cria valor mensurável."
                 </p>
-                <footer className="text-primary-400 font-medium mt-2">— Manuel Portela</footer>
+                <footer className="text-primary-400 font-medium mt-2">— Manuel Portela Neto</footer>
               </blockquote>
             </div>
           </div>

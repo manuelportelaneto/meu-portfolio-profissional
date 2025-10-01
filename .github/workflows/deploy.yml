@@ -50,3 +50,4 @@ jobs:
         server-dir: ./public_html/
         # Opção para limpar o destino antes de enviar, garantindo que arquivos antigos sejam removidos.
         dangerous-clean-slate: true
+        
