@@ -22,8 +22,8 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18' # Use uma versão LTS (Long Term Support) do Node
-        cache: 'npm' # Habilita o cache para acelerar instalações futuras
+        node-version: '18'
+        cache: 'npm'
 
     # Passo 3: Instala as dependências do projeto.
     - name: Install dependencies
@@ -32,32 +32,28 @@ jobs:
     # Passo 4: Constrói o projeto para produção. Cria a pasta 'dist'.
     - name: Build project
       run: npm run build
-      # Garante que as configurações do vite.config.js sejam usadas corretamente
       env:
         VITE_BASE: './' 
 
-    # === PASSO DE DEPURAÇÃO ADICIONADO AQUI ===
-    # Este passo irá listar o conteúdo do diretório raiz do FTP para vermos onde estamos logando.
-    - name: List FTP content for debugging
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+    # === NOVO PASSO DE DEPURAÇÃO - A PROVA FINAL ===
+    # Usaremos uma ação mais simples, focada apenas em listar os arquivos.
+    - name: List files in FTP root directory
+      uses: pcalouche/ftp-action@v1.1.1
       with:
-        server: ${{ secrets.FTP_SERVER }}
+        host: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        # Apenas executa o comando 'ls -la' e depois para.
-        dangerous-exec-only: 'ls -la'
+        # O comando que queremos executar. Simples e direto.
+        command: ls -la
         
-    # Passo 5: Implanta os arquivos na Hostinger usando FTP.
+    # Passo Final: Implanta os arquivos na Hostinger usando FTP.
     - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        # Pega as credenciais dos segredos que configuramos no GitHub.
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        # Diretório de origem: a pasta que queremos enviar (o resultado do build).
         local-dir: ./dist/
-        # Diretório de destino: vamos usar a configuração que tem a maior chance de sucesso.
+        # Continuamos com nossa aposta mais provável. O debug acima vai confirmar.
         server-dir: ./public_html/
-        # Opção para limpar o destino antes de enviar, garantindo que arquivos antigos sejam removidos.
-        dangerous-clean-slate: true
+        dangerous-clean-slate: true```
