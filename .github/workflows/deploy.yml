@@ -36,6 +36,17 @@ jobs:
       env:
         VITE_BASE: './' 
 
+    # === PASSO DE DEPURAÇÃO ADICIONADO AQUI ===
+    # Este passo irá listar o conteúdo do diretório raiz do FTP para vermos onde estamos logando.
+    - name: List FTP content for debugging
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        # Apenas executa o comando 'ls -la' e depois para.
+        dangerous-exec-only: 'ls -la'
+        
     # Passo 5: Implanta os arquivos na Hostinger usando FTP.
     - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -44,10 +55,9 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        # Diretório de origem: a pasta que queremos enviar.
-        local-dir: ./public_html/
-        # Diretório de destino: a pasta raiz do seu site na Hostinger.
+        # Diretório de origem: a pasta que queremos enviar (o resultado do build).
+        local-dir: ./dist/
+        # Diretório de destino: vamos usar a configuração que tem a maior chance de sucesso.
         server-dir: ./public_html/
         # Opção para limpar o destino antes de enviar, garantindo que arquivos antigos sejam removidos.
         dangerous-clean-slate: true
-        
