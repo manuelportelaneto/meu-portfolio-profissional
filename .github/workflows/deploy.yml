@@ -45,7 +45,7 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         # Diretório de origem: a pasta que queremos enviar.
-        local-dir: ./dist/
+        local-dir: public_html/
         # Diretório de destino: a pasta raiz do seu site na Hostinger.
         server-dir: ./public_html/
         # Opção para limpar o destino antes de enviar, garantindo que arquivos antigos sejam removidos.
