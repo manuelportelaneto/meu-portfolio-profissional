@@ -49,7 +49,7 @@ const PortfolioSection = () => {
       gradient: "from-gray-700 to-gray-900",
     },
     {
-      title: "OdontoFlow - Smart Scheduling",
+      title: "Odonto Flow - Smart Scheduling",
       description: "Solução de automação para agendamento inteligente, otimizando a alocação de recursos e horários com base em regras de negócio.",
       image: null, 
       videoUrl: 'https://www.youtube.com/embed/oUdMQ12mRAc',
