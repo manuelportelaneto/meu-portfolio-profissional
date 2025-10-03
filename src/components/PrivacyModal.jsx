@@ -28,7 +28,7 @@ const PrivacyModal = ({ isOpen, onClose }) => {
 
         {/* Corpo do Modal - Onde o texto entra (com rolagem) */}
         <div className="p-6 text-gray-300 overflow-y-auto">
-          <p className="mb-2 text-sm text-gray-400"><strong>Última atualização:</strong> 01 de Outubro de 2025</p>
+          <p className="mb-2 text-sm text-gray-400"><strong>Última atualização:</strong> 02 de Outubro de 2025</p>
 
           <h3 className="text-lg font-semibold text-white mt-4 mb-2">1. Introdução</h3>
           <p>Bem-vindo ao meu portfólio profissional. Esta política de privacidade explica como eu, Manuel Portela Neto, utilizo dados coletados através do site manuelportelaneto.cloudmatrix.com.br para entender melhor o tráfego de visitantes e aprimorar a experiência do usuário.</p>
@@ -36,6 +36,8 @@ const PrivacyModal = ({ isOpen, onClose }) => {
           <h3 className="text-lg font-semibold text-white mt-4 mb-2">2. Coleta de Dados</h3>
           <p>Este site utiliza ferramentas de análise de terceiros para coletar informações sobre sua visita. Especificamente:</p>
           <ul className="list-disc list-inside mt-2 space-y-1">
+            {/* INFORMAÇÃO DO GOOGLE ANALYTICS ADICIONADA AQUI */}
+            <li><strong>Google Analytics:</strong> Esta ferramenta coleta estatísticas de visitantes, como país de origem, páginas mais acessadas e tempo de permanência, para entendermos o alcance e a performance do portfólio.</li>
             <li><strong>Microsoft Clarity:</strong> Esta ferramenta nos ajuda a entender como os usuários interagem com a página através de mapas de calor (heatmaps) e gravações de sessão anônimas. O Clarity captura a interação do usuário, mas se esforça para anonimizar dados sensíveis.</li>
             <li><strong>Cookies:</strong> Pequenos arquivos são armazenados no seu navegador para auxiliar no funcionamento das ferramentas de análise e para registrar o seu consentimento sobre o uso de cookies.</li>
           </ul>

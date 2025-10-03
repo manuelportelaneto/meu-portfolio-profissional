@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react' // Adicionado useEffect
+import ReactGA from 'react-ga4'; // Adicionado import do Google Analytics
 import Navigation from './components/Navigation'
 import HeroSection from './components/sections/HeroSection'
 import AboutSection from './components/sections/AboutSection'
@@ -12,8 +13,19 @@ import CookieConsent from "react-cookie-consent"
 import PrivacyModal from './components/PrivacyModal';
 import Footer from './components/Footer'
 
+// Sua ID de Métrica do Google Analytics
+const MEASUREMENT_ID = "G-SCJ3MHR1ME";
+
 function App() {
   const [isPrivacyModalOpen, setPrivacyModalOpen] = useState(false);
+  
+  // Hook para inicializar o GA4
+  useEffect(() => {
+    ReactGA.initialize(MEASUREMENT_ID);
+    // Envia o primeiro pageview
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-950 text-white">
       <Navigation />
@@ -31,13 +43,13 @@ function App() {
 
       <Footer />
 
-      {/* === MODAL DE PRIVACIDADE (ele fica aqui, mas só aparece quando o estado é true) === */}
+      {/* MODAL DE PRIVACIDADE */}
       <PrivacyModal 
         isOpen={isPrivacyModalOpen} 
         onClose={() => setPrivacyModalOpen(false)} 
       />
 
-      {/* === BANNER DE COOKIES MODIFICADO === */}
+      {/* BANNER DE COOKIES */}
       <CookieConsent
         location="bottom"
         buttonText="Entendi!"
@@ -47,7 +59,6 @@ function App() {
         expires={150}
       >
         Este site utiliza cookies para garantir uma melhor experiência e para análise de tráfego.{" "}
-        {/* Este link agora é um botão que abre o modal */}
         <button 
           onClick={() => setPrivacyModalOpen(true)} 
           className="font-bold text-primary-400 underline ml-1 hover:text-primary-300"
