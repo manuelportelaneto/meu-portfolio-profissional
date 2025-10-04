@@ -53,7 +53,7 @@ const PortfolioSection = () => {
       description: "Desenvolvimento e manutenção de blog imersivo para portal de notícias sobre cultura e religião, com foco em SEO e performance.",
       image: imgAvozdoexu,
     tags: ["WordPress", "Elementor", "HTML", "CSS", "Canva", "Leonardo AI"],
-      links: [{ label: "Ver Blog", url: "avozdoexu.lovestoblog.com", icon: BookOpen }],
+      links: [{ label: "Ver Blog", url: "https://avozdoexu.lovestoblog.com/", icon: BookOpen }],
       gradient: "from-gray-700 to-gray-900",
       problem: "O portal precisava de uma plataforma de conteúdo que fosse visualmente atraente e imersiva, criando um ambiente temático para os visitantes. Neste projeto, criei um blog completo utilizando WordPress e Elementor, e criei uma landing page personalizada para gerar vendas",
       skillsLearned: "Customização avançada de temas WordPress com Elementor, técnicas de otimização de performance (PageSpeed) e implementação de melhores práticas de SEO On-Page para maximizar a visibilidade orgânica."
