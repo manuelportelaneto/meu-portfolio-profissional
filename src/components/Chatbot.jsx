@@ -36,7 +36,7 @@ const Chatbot = () => {
 
     if (isOpen && messages.length === 0 && sessionId) {
       setIsLoading(true);
-      fetch('/api/chat', {
+      fetch('https://us-central1-manuel-bot.cloudfunctions.net/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ history: [], question: 'START_CONVERSATION', sessionId }),
@@ -70,7 +70,7 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch('https://us-central1-manuel-bot.cloudfunctions.net/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ history: messages, question: inputValue, sessionId }),
