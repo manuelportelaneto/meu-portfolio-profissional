@@ -1,14 +1,16 @@
 import React from 'react'
 import { CheckCircle, User, Target, Lightbulb } from 'lucide-react'
+import { Tooltip } from 'react-tooltip' // PASSO 1: Importar o Tooltip
 
 const AboutSection = () => {
+  // PASSO 2: Transformar a lista de skills em objetos com descrição
   const softSkills = [
-    'Polimata',
-    'Autodidata', 
-    'Comunicação Eficaz',
-    'Resolução de Problemas',
-    'Adaptabilidade',
-    'Otimização de Processos'
+    { name: 'Polimata', id: 'polymath', description: 'Capacidade de adquirir conhecimento em diversas áreas distintas, conectando ideias e aplicando soluções criativas.' },
+    { name: 'Autodidata', id: 'autodidact', description: 'Habilidade de aprender de forma independente e contínua, buscando ativamente novos conhecimentos e tecnologias.' },
+    { name: 'Comunicação Eficaz', id: 'comms', description: 'Capacidade de transmitir ideias complexas de forma clara e objetiva, tanto para públicos técnicos quanto não-técnicos.' },
+    { name: 'Resolução de Problemas', id: 'problem-solving', description: 'Mentalidade analítica para decompor desafios complexos, identificar a causa raiz e implementar soluções eficientes.' },
+    { name: 'Adaptabilidade', id: 'adaptability', description: 'Facilidade em se ajustar a novas tecnologias, metodologias e ambientes de trabalho, mantendo a produtividade.' },
+    { name: 'Otimização de Processos', id: 'optimization', description: 'Visão crítica para identificar gargalos e ineficiências, aplicando tecnologia para automatizar e melhorar fluxos de trabalho.' }
   ]
 
   return (
@@ -36,23 +38,9 @@ const AboutSection = () => {
 
               {/* Experience Highlights */}
               <div className="mt-12 grid md:grid-cols-3 gap-6">
-                <div className="text-center p-6 bg-gray-900 rounded-xl border border-gray-800">
-                  <User className="w-8 h-8 text-primary-500 mx-auto mb-3" />
-                  <h3 className="text-2xl font-bold text-white mb-2">6+</h3>
-                  <p className="text-gray-400">Anos em Logística</p>
-                </div>
-
-                <div className="text-center p-6 bg-gray-900 rounded-xl border border-gray-800">
-                  <Target className="w-8 h-8 text-primary-500 mx-auto mb-3" />
-                  <h3 className="text-2xl font-bold text-white mb-2">30+</h3>
-                  <p className="text-gray-400">Projetos Entregues</p>
-                </div>
-
-                <div className="text-center p-6 bg-gray-900 rounded-xl border border-gray-800">
-                  <Lightbulb className="w-8 h-8 text-primary-500 mx-auto mb-3" />
-                  <h3 className="text-2xl font-bold text-white mb-2">24/7</h3>
-                  <p className="text-gray-400">Aprendizado Contínuo</p>
-                </div>
+                <div className="text-center p-6 bg-gray-900 rounded-xl border border-gray-800"><User className="w-8 h-8 text-primary-500 mx-auto mb-3" /><h3 className="text-2xl font-bold text-white mb-2">6+</h3><p className="text-gray-400">Anos em Logística</p></div>
+                <div className="text-center p-6 bg-gray-900 rounded-xl border border-gray-800"><Target className="w-8 h-8 text-primary-500 mx-auto mb-3" /><h3 className="text-2xl font-bold text-white mb-2">30+</h3><p className="text-gray-400">Projetos Entregues</p></div>
+                <div className="text-center p-6 bg-gray-900 rounded-xl border border-gray-800"><Lightbulb className="w-8 h-8 text-primary-500 mx-auto mb-3" /><h3 className="text-2xl font-bold text-white mb-2">24/7</h3><p className="text-gray-400">Aprendizado Contínuo</p></div>
               </div>
             </div>
           </div>
@@ -60,33 +48,40 @@ const AboutSection = () => {
           {/* Soft Skills Box */}
           <div className="lg:col-span-1">
             <div className="card sticky top-8">
-              <h3 className="text-2xl font-bold text-primary-400 mb-6 flex items-center gap-3">
-                <CheckCircle className="w-7 h-7" />
-                Soft Skills
-              </h3>
-
+              <h3 className="text-2xl font-bold text-primary-400 mb-6 flex items-center gap-3"><CheckCircle className="w-7 h-7" />Soft Skills</h3>
               <div className="space-y-4">
-                {softSkills.map((skill, index) => (
+                {softSkills.map((skill) => (
+                  // PASSO 3: Adicionar os atributos data-* para conectar com o Tooltip
                   <div 
-                    key={index} 
+                    key={skill.id}
+                    data-tooltip-id="soft-skill-tooltip"
+                    data-tooltip-content={skill.description}
                     className="flex items-center gap-3 p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors duration-300"
                   >
                     <div className="w-2 h-2 bg-primary-500 rounded-full"></div>
-                    <span className="text-gray-200 font-medium">{skill}</span>
+                    <span className="text-gray-200 font-medium">{skill.name}</span>
                   </div>
                 ))}
               </div>
-
-              {/* Quote */}
-              <blockquote className="mt-8 p-4 bg-primary-500/10 border-l-4 border-primary-500 rounded">
-                <p className="text-gray-300 italic">
-                  "A melhor tecnologia é aquela que resolve problemas reais e cria valor mensurável."
-                </p>
-                <footer className="text-primary-400 font-medium mt-2">— Manuel Portela</footer>
-              </blockquote>
+              <blockquote className="mt-8 p-4 bg-primary-500/10 border-l-4 border-primary-500 rounded"><p className="text-gray-300 italic">"A melhor tecnologia é aquela que resolve problemas reais e cria valor mensurável."</p><footer className="text-primary-400 font-medium mt-2">— Manuel Portela</footer></blockquote>
             </div>
           </div>
         </div>
+
+        {/* PASSO 4: Renderizar e Estilizar o Componente Tooltip */}
+        <Tooltip id="soft-skill-tooltip" 
+          place="top-start"
+          style={{
+            backgroundColor: 'var(--color-gray-700, #374151)', // Cor de fundo do seu design
+            color: '#D1D5DB', // Cor do texto
+            borderRadius: '8px',
+            maxWidth: '250px',
+            fontSize: '12px',
+            lineHeight: '1.5',
+            padding: '8px 12px',
+            zIndex: '99',
+          }} 
+        />
       </div>
     </section>
   )
