@@ -36,7 +36,7 @@ const Chatbot = () => {
 
     if (isOpen && messages.length === 0 && sessionId) {
       setIsLoading(true);
-      fetch('https://chat-bhzo5nqy7a-uc.a.run.app', {
+      fetch('https://manuel-bot-backend-153290184725.southamerica-east1.run.app', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ history: [], question: 'START_CONVERSATION', sessionId }),
@@ -70,7 +70,7 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://chat-bhzo5nqy7a-uc.a.run.app', {
+      const response = await fetch('https://manuel-bot-backend-153290184725.southamerica-east1.run.app', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ history: messages, question: inputValue, sessionId }),
