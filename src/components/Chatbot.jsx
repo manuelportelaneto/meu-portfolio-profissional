@@ -36,7 +36,7 @@ const Chatbot = () => {
 
     if (isOpen && messages.length === 0 && sessionId) {
       setIsLoading(true);
-      fetch('https://genai-app-manuelbot-1-1759877501133-153290184725.us-central1.run.app/api/chat', {
+      fetch('https://genai-app-manuelbot-1-1759877501133-153290184725.us-central1.run.app/predict', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ history: [], question: 'START_CONVERSATION', sessionId }),
@@ -70,7 +70,7 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://genai-app-manuelbot-1-1759877501133-153290184725.us-central1.run.app/api/chat', {
+      const response = await fetch('https://genai-app-manuelbot-1-1759877501133-153290184725.us-central1.run.app/predict', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ history: messages, question: inputValue, sessionId }),
