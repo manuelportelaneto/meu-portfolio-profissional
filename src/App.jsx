@@ -12,7 +12,7 @@ import ContactSection from './components/sections/ContactSection';
 import CookieConsent from "react-cookie-consent";
 import PrivacyModal from './components/PrivacyModal';
 import Footer from './components/Footer';
-import Chatbot from './components/Chatbot';
+//import Chatbot from './components/Chatbot';
 
 const MEASUREMENT_ID = "G-SCJ3MHR1ME";
 
@@ -59,7 +59,7 @@ function App() {
           Saiba mais.
         </button>
       </CookieConsent>
-      <Chatbot />
+      {/*<Chatbot />*/}
     </div>
   )
 }
