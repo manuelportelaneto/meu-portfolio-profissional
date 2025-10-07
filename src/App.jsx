@@ -59,7 +59,7 @@ function App() {
           Saiba mais.
         </button>
       </CookieConsent>
-      <Chatbot />
+      {/*<Chatbot />*/}
     </div>
   )
 }
