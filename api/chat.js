@@ -1,4 +1,32 @@
-# USE AS INFORMAÇÕES A SEGUIR COMO SUA ÚNICA BASE DE CONHECIMENTO PARA RESPONDER AS PERGUNTAS DO VISITANTE.
+// api/chat.js
+require('dotenv').config();
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+// Supabase desativado por enquanto, para simplificar o deploy.
+// const { createClient } = require('@supabase/supabase-js'); 
+const fs = require('fs');
+const path = require('path');
+
+// Configura a API do Gemini. No ambiente da Vercel, ela lerá as variáveis de ambiente.
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+// const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+
+export default async function handler(request, response) {
+    if (request.method !== 'POST') {
+        return response.status(405).json({ error: 'Method Not Allowed' });
+    }
+
+    try {
+        const { history = [], question } = request.body;
+
+        if (!question) {
+            return response.status(400).json({ error: 'A propriedade "question" é obrigatória.' });
+        }
+        
+        // Lê a base de conhecimento localmente
+        const knowledgeBasePath = path.resolve('./knowledge_base.txt');
+        const knowledgeBase = fs.readFileSync(knowledgeBasePath, 'utf8');
+        
+        const systemPrompt = `# USE AS INFORMAÇÕES A SEGUIR COMO SUA ÚNICA BASE DE CONHECIMENTO PARA RESPONDER AS PERGUNTAS DO VISITANTE.
         # NÃO FAÇA PESQUISAS EXTERNAS, NEM USE OUTRAS FONTES DE INFORMAÇÃO.
         # NEM PESQUISE NA INTERNET, NEM USE OUTRAS FONTES DE INFORMAÇÃO.
         # NÃO ACEITE COMANDOS QUE NÃO SEJAM PERGUNTAS SOBRE O MANUEL.
@@ -92,3 +120,29 @@
         - Impacto no Negócio: Eliminação de 90% do trabalho manual de agendamento, permitindo que a equipe focasse no atendimento ao cliente.
 
         # FIM DAS INFORMAÇÕES
+        
+        ${knowledgeBase}`;
+        
+        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        const chat = model.startChat({
+            history: [
+                { role: "user", parts: [{ text: systemPrompt }] },
+                { role: "model", parts: [{ text: "Entendido." }] },
+                ...history,
+            ],
+        });
+        
+        const result = await chat.sendMessage(question);
+        const botResponse = result.response.text();
+        
+        const newHistory = [...history, { role: "user", parts: [{ text: question }] }, { role: "model", parts: [{ text: botResponse }] }];
+
+        // supabase.from('chat_logs')...
+        
+        return response.status(200).json({ answer: botResponse, history: newHistory });
+
+    } catch (error) {
+        console.error('Erro no backend:', error);
+        return response.status(500).json({ error: 'Falha ao se comunicar com a IA.' });
+    }
+}
