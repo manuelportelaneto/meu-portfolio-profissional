@@ -8,19 +8,43 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [threadId, setThreadId] = useState(null); // Estado para guardar o ID da conversa
+  const [threadId, setThreadId] = useState(null);
   const messagesEndRef = useRef(null);
 
-  // Efeito para rolar para a última mensagem
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }), 100);
     }
   }, [messages, isLoading, isOpen]);
 
-  // Limpa o histórico e o threadId ao fechar, para uma nova conversa na próxima vez
+  // Lógica para iniciar a conversa quando o chat é aberto pela primeira vez.
   useEffect(() => {
-    if (!isOpen) {
+    if (isOpen && messages.length === 0) {
+      // Inicia o estado de loading e chama a API com uma pergunta inicial
+      setIsLoading(true);
+      const startConversation = async () => {
+        try {
+          const response = await fetch('https://manuel-bot-backend.onrender.com/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ question: 'Olá, inicie a conversa.', threadId: null }),
+          });
+          const data = await response.json();
+          if (data.error) throw new Error(data.error);
+          
+          const botMessage = { role: 'assistant', content: [{ type: 'text', text: { value: data.answer } }] };
+          setMessages([botMessage]);
+          setThreadId(data.threadId);
+        } catch (error) {
+          console.error('Error starting conversation:', error);
+          const errorMessage = { role: 'assistant', content: [{ type: 'text', text: { value: 'Olá! Parece que estou com problemas para me conectar agora.' } }] };
+          setMessages([errorMessage]);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      startConversation();
+    } else if (!isOpen) {
       setMessages([]);
       setThreadId(null);
     }
@@ -36,19 +60,18 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://manuel-bot-backend.onrender.com/api/chat', { // <-- A URL DA VITÓRIA
+      const response = await fetch('https://manuel-bot-backend.onrender.com/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: inputValue, threadId: threadId }), // Envia a pergunta e o threadId atual
+        body: JSON.stringify({ question: inputValue, threadId: threadId }),
       });
 
       const data = await response.json();
-      
       if (data.error) throw new Error(data.error);
       
       const botMessage = { role: 'assistant', content: [{ type: 'text', text: { value: data.answer } }] };
       setMessages(prev => [...prev, botMessage]);
-      setThreadId(data.threadId); // Salva o ID da conversa para a próxima mensagem
+      setThreadId(data.threadId); // O ID da thread será o mesmo, mas reafirmamos por segurança
 
     } catch (error) {
       console.error('Error fetching chat response:', error);
@@ -59,26 +82,40 @@ const Chatbot = () => {
     }
   };
 
-  const toggleChat = () => {
-    setIsOpen(prev => !prev);
-  }
-
-  // A função para renderizar mensagens agora lê o formato da API de Assistentes
+  const toggleChat = () => setIsOpen(prev => !prev);
+  
   const renderMessageContent = (msg) => {
-    if (msg.content[0]?.type === 'text') {
+    if (msg.content && msg.content[0]?.type === 'text') {
       return msg.content[0].text.value.replace(/\n/g, '<br />');
     }
     return '';
-  }
+  };
 
   return (
     <>
       <div className="fixed bottom-24 right-6 z-[60]">
         <AnimatePresence>
           {isOpen && (
-            <motion.div /* ... sua janela de chat ... */ >
-              {/* Header */}
-              {/* Messages */}
+             <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 50, scale: 0.9 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="w-[calc(100vw-3rem)] max-w-sm h-[70vh] max-h-[600px] bg-gray-900/80 backdrop-blur-xl border border-gray-700 rounded-2xl shadow-2xl flex flex-col"
+              >
+              <div className="flex items-center justify-between p-4 border-b border-gray-700 flex-shrink-0">
+                  <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full overflow-hidden">
+                          <img src="/favicon.ico" alt="Manuel (bot) avatar" className="w-full h-full" />
+                      </div>
+                      <div>
+                          <h3 className="font-bold text-white">Manuel (bot)</h3>
+                          <p className="text-xs text-green-400">Online</p>
+                      </div>
+                  </div>
+                  <button onClick={toggleChat} className="p-2 rounded-full hover:bg-gray-700"><X size={20} /></button>
+              </div>
+
               <div className="flex-1 p-4 overflow-y-auto">
                 <div className="space-y-4">
                   {messages.map((msg, index) => (
@@ -88,17 +125,35 @@ const Chatbot = () => {
                       </div>
                     </div>
                   ))}
-                  {isLoading && ( /* ... indicador de loading ... */ )}
+                  {isLoading && (
+                    <div className="flex justify-start">
+                        <div className="px-4 py-2 rounded-2xl bg-gray-700 text-gray-200 rounded-bl-none">
+                            <div className="flex items-center gap-2">
+                                <span className="h-2 w-2 bg-primary-400 rounded-full animate-bounce delay-0"></span>
+                                <span className="h-2 w-2 bg-primary-400 rounded-full animate-bounce delay-150"></span>
+                                <span className="h-2 w-2 bg-primary-400 rounded-full animate-bounce delay-300"></span>
+                            </div>
+                        </div>
+                    </div>
+                  )}
                   <div ref={messagesEndRef} />
                 </div>
               </div>
-              {/* Input Form */}
+
+              <form onSubmit={handleSendMessage} className="p-4 border-t border-gray-700 flex-shrink-0">
+                  <div className="flex items-center gap-2">
+                      <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Digite sua mensagem..." disabled={isLoading} className="flex-1 bg-gray-800 border border-gray-600 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm disabled:opacity-50" />
+                      <button type="submit" disabled={isLoading} className="p-3 bg-primary-600 rounded-full hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                          <Send size={18} className="text-white" />
+                      </button>
+                  </div>
+              </form>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
       <div className="fixed bottom-6 right-6 z-50">
-        <motion.button onClick={toggleChat} /* ... sua bolha flutuante ... */ >
+        <motion.button onClick={toggleChat} className="w-16 h-16 bg-gradient-to-r from-primary-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg text-white" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
           {isOpen ? <X size={28}/> : <MessageCircle size={28} />}
         </motion.button>
       </div>
