@@ -11,40 +11,16 @@ const Chatbot = () => {
   const [threadId, setThreadId] = useState(null);
   const messagesEndRef = useRef(null);
 
+  // Efeito para rolar para a última mensagem
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }), 100);
     }
   }, [messages, isLoading, isOpen]);
 
-  // Lógica para iniciar a conversa quando o chat é aberto pela primeira vez.
+  // CORREÇÃO: Remove a lógica de "startConversation". Apenas limpa o estado ao fechar.
   useEffect(() => {
-    if (isOpen && messages.length === 0) {
-      // Inicia o estado de loading e chama a API com uma pergunta inicial
-      setIsLoading(true);
-      const startConversation = async () => {
-        try {
-          const response = await fetch('https://manuel-bot-backend.onrender.com/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ question: 'Olá, inicie a conversa.', threadId: null }),
-          });
-          const data = await response.json();
-          if (data.error) throw new Error(data.error);
-          
-          const botMessage = { role: 'assistant', content: [{ type: 'text', text: { value: data.answer } }] };
-          setMessages([botMessage]);
-          setThreadId(data.threadId);
-        } catch (error) {
-          console.error('Error starting conversation:', error);
-          const errorMessage = { role: 'assistant', content: [{ type: 'text', text: { value: 'Olá! Parece que estou com problemas para me conectar agora.' } }] };
-          setMessages([errorMessage]);
-        } finally {
-          setIsLoading(false);
-        }
-      };
-      startConversation();
-    } else if (!isOpen) {
+    if (!isOpen) {
       setMessages([]);
       setThreadId(null);
     }
@@ -60,10 +36,12 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
+      // A única chamada à API, simples e direta.
       const response = await fetch('https://manuel-bot-backend.onrender.com/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: inputValue, threadId: threadId }),
+        // Envia a pergunta do usuário e o threadId (que será `null` na primeira vez).
+        body: JSON.stringify({ question: inputValue, threadId: threadId }), 
       });
 
       const data = await response.json();
@@ -71,7 +49,7 @@ const Chatbot = () => {
       
       const botMessage = { role: 'assistant', content: [{ type: 'text', text: { value: data.answer } }] };
       setMessages(prev => [...prev, botMessage]);
-      setThreadId(data.threadId); // O ID da thread será o mesmo, mas reafirmamos por segurança
+      setThreadId(data.threadId); // Armazena o threadId para a próxima mensagem.
 
     } catch (error) {
       console.error('Error fetching chat response:', error);
@@ -118,6 +96,12 @@ const Chatbot = () => {
 
               <div className="flex-1 p-4 overflow-y-auto">
                 <div className="space-y-4">
+                  {/* Mensagem de boas-vindas estática, que não depende de API */}
+                  {messages.length === 0 && !isLoading && (
+                    <div className="text-center text-xs text-gray-400 px-4 pt-4">
+                      Este é o Manuel (bot). Faça uma pergunta sobre minha carreira, projetos ou habilidades.
+                    </div>
+                  )}
                   {messages.map((msg, index) => (
                     <div key={index} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                       <div className={`max-w-xs md:max-w-sm px-4 py-2 rounded-2xl ${msg.role === 'user' ? 'bg-primary-600 text-white rounded-br-none' : 'bg-gray-700 text-gray-200 rounded-bl-none'}`}>
