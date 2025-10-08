@@ -24,7 +24,7 @@ const Chatbot = () => {
       setIsLoading(true);
       const startConversation = async () => {
         try {
-          const response = await fetch('https://manuel-bot-backend.onrender.com/predict', {
+          const response = await fetch('https://manuel-bot-backend.onrender.com/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ question: 'Olá, inicie a conversa.', threadId: null }),
@@ -60,7 +60,7 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://manuel-bot-backend.onrender.com/predict', {
+      const response = await fetch('https://manuel-bot-backend.onrender.com/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question: inputValue, threadId: threadId }),
