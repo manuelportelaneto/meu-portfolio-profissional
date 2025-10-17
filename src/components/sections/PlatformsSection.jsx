@@ -35,14 +35,14 @@ const PlatformsSection = () => {
       gradient: "from-orange-500 to-red-500",
       stats: "Google Developer"
     },
-    {
-      title: "Cloud Matrix",
-      description: "Conheça minha empresa de desenvolvimento.",
-      url: "https://cloudmatrix.com.br/",
-      icon: Globe,
-      gradient: "from-purple-600 to-purple-500",
-      stats: "Empresa Própria"
-    },
+    //{
+      //title: "Cloud Matrix",
+      //description: "Conheça minha empresa de desenvolvimento.",
+      //url: "https://cloudmatrix.com.br/",
+      //icon: Globe,
+      //gradient: "from-purple-600 to-purple-500",
+      //stats: "Empresa Própria"
+    //},
     {
       title: "YouTube",
       description: "Acompanhe meu conteúdo sobre IA.",
