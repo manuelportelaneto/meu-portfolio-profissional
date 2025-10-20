@@ -18,6 +18,7 @@ const MEASUREMENT_ID = "G-SCJ3MHR1ME";
 
 function App() {
   const [isPrivacyModalOpen, setPrivacyModalOpen] = useState(false);
+  const [isChatOpen, setChatOpen] = useState(false); 
   
   useEffect(() => {
     ReactGA.initialize(MEASUREMENT_ID);
@@ -31,7 +32,7 @@ function App() {
         <HeroSection />
         <AboutSection />
         <SkillsSection />
-        <PortfolioSection />
+        <PortfolioSection openChat={() => setChatOpen(true)} />
         <EducationSection />
         <LanguagesSection />
         <PlatformsSection />
@@ -59,7 +60,7 @@ function App() {
           Saiba mais.
         </button>
       </CookieConsent>
-      <Chatbot />
+      <Chatbot isOpen={isChatOpen} setIsOpen={setChatOpen} />
     </div>
   )
 }

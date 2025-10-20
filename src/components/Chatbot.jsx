@@ -3,8 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send } from 'lucide-react';
 
-const Chatbot = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const Chatbot = ({ isOpen, setIsOpen }) => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -36,11 +35,9 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      // A única chamada à API, simples e direta.
       const response = await fetch('https://manuel-bot-backend.onrender.com/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        // Envia a pergunta do usuário e o threadId (que será `null` na primeira vez).
         body: JSON.stringify({ question: inputValue, threadId: threadId }), 
       });
 

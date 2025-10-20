@@ -1,14 +1,16 @@
 import React, { useState } from 'react' // Adicionado useState
-import { ExternalLink, Github, Lock, Briefcase, Cloud, BookOpen, Layers, Code2 } from 'lucide-react'
+import { ExternalLink, Github, Lock, Briefcase, Cloud, BookOpen, Layers, Code2, MessageCircle } from 'lucide-react'
 import ProjectModal from '../ProjectModal'; // Importa nosso novo componente de modal
 
-// Suas importações de imagens existentes
+// Importações de imagens 
 import imgVirtualMachines from '../../assets/projects/virtualmachines.png'; 
 import imgEcommerce from '../../assets/projects/ecommerce.png';
 import imgDonaAntonieta from '../../assets/projects/donaantonieta.png';
 import imgAvozdoexu from '../../assets/projects/avozdoexu.png';
+import imgPortfolioPreview from '../../assets/projects/portfolio.png';
+import imgManuelBotPreview from '../../assets/projects/manuelbot.png';
 
-const PortfolioSection = () => {
+const PortfolioSection = ({ openChat }) => {
   // Estado para controlar a visibilidade do modal e o projeto selecionado
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -94,7 +96,32 @@ const PortfolioSection = () => {
       gradient: "from-pink-500 to-rose-500",
       problem: "Um artista teatral precisava de um espaço digital para exibir seu portfólio de forma elegante e profissional, que fosse fácil de navegar e que transmitisse a essência do seu trabalho artístico, com SEO otimizado para atrair mais visitantes, e ferramentas analíticas para monitorar o desempenho do site.",
       skillsLearned: "Foco nos fundamentos do desenvolvimento web (HTML, CSS e Javascript sem frameworks) para criar um site leve e performático. Habilidade em traduzir uma visão artística em um design web funcional e esteticamente agradável. Otimização de SEO e implementação de ferramentas analíticas para insights sobre o comportamento dos visitantes."
-    }
+    },
+    {
+      title: "Portfólio Profissional (Esta Página)",
+      description: "Desenvolvimento de uma Single-Page Application (SPA) com React e Vite para servir como um hub central de apresentação profissional, com foco em design moderno e experiência de usuário.",
+      image: imgPortfolioPreview, 
+      tags: ["React", "Vite", "Tailwind CSS", "Headless UI", "Framer Motion", "CI/CD", "Clarity", "GA4"],
+      links: [
+        { label: "Ver Código no GitHub", url: "https://github.com/manuelportelaneto/meu-portfolio-profissional", icon: Github }
+      ],
+      gradient: "from-cyan-500 to-blue-500",
+      problem: "A necessidade de consolidar minhas habilidades, projetos e experiências em uma plataforma única, interativa e profissional, que fosse visualmente atraente para recrutadores e otimizada para SEO.",
+      skillsLearned: "Aprofundamento em React Hooks, componentização, estilização com Tailwind CSS, implementação de animações com Framer Motion, e configuração de um pipeline de CI/CD completo com GitHub Actions para automação do deploy."
+    },
+    {
+      title: "Manuel (bot) - Assistente Virtual com IA",
+      description: "Criação de um backend serverless em Node.js para alimentar o assistente de IA conversacional desta página, demonstrando a integração com APIs de modelos de linguagem de ponta.",
+      image: imgManuelBotPreview, 
+      tags: ["Node.js", "Express", "OpenAI Assistants API", "Serverless", "Render.com", "Engenharia de Prompt"],
+      links: [
+        { label: "Ver Código no GitHub", url: "https://github.com/manuelportelaneto/manuel-bot-backend", icon: Github },
+        { label: "Interagir com o Bot", url: "#", icon: MessageCircle }  
+      ],
+      gradient: "from-purple-500 to-indigo-500",
+      problem: "Transformar um portfólio estático em uma experiência interativa e 'viva', capaz de responder perguntas dos visitantes 24/7, qualificar leads (recrutadores/clientes) e demonstrar minhas habilidades de IA na prática.",
+      skillsLearned: "Arquitetura de microsserviços, desenvolvimento de API REST com Node.js/Express, orquestração de conversas com a OpenAI Assistants API, engenharia de prompt para refino de persona, e deploy de aplicações serverless na nuvem."
+    },
   ];
 
   const ProjectCard = ({ project, onCardClick }) => (
@@ -127,12 +154,38 @@ const PortfolioSection = () => {
       </div>
       <div className="flex flex-wrap gap-3">
         {project.links.map((link, linkIndex) => {
-          const IconComponent = link.icon
-          return (<a key={linkIndex} href={link.url} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium ${link.restricted || link.comingSoon ? 'bg-gray-800 border border-gray-700 text-gray-400 cursor-not-allowed' : 'bg-primary-500 hover:bg-primary-600 text-white hover:transform hover:scale-105'}`} onClick={link.restricted || link.comingSoon ? (e) => e.preventDefault() : undefined}><IconComponent className="w-4 h-4" />{link.label}</a>)
+          const IconComponent = link.icon;
+
+          if (link.label === "Interagir com o Bot") {
+            return (
+              <button
+                key={linkIndex}
+                onClick={openChat}
+                className="btn-secondary inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium"
+              >
+                <IconComponent className="w-4 h-4" />
+                {link.label}
+              </button>
+            );
+          }
+          
+          return (
+            <a
+              key={linkIndex}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium ${link.restricted ? 'bg-gray-700 text-gray-400 cursor-not-allowed' : 'btn-primary bg-primary-600 hover:bg-primary-700'}`}
+              onClick={link.restricted ? (e) => e.preventDefault() : undefined}
+            >
+              <IconComponent className="w-4 h-4" />
+              {link.label}
+            </a>
+          );
         })}
       </div>
     </div>
-  )
+  );
 
   return (
     <section id="portfolio" className="py-20 bg-gray-950">
