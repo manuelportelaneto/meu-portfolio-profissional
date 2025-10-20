@@ -37,12 +37,12 @@ const HeroSection = () => {
           </h1>
 
           <h2 className="text-xl md:text-2xl text-gray-300 mb-8 animate-slide-up delay-200">
-            Desenvolvedor de Sistemas <br/>
-            Especialista em Desenvolvimento Web | IA Generativa| Cloud e Automação
+            Arquiteto de Soluções & DevOps<br/>
+            IA Generativa | Multicloud | Automação de Processos
           </h2>
 
           <p className="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed mb-12 animate-slide-up delay-300">
-            Transformando processos complexos em soluções tecnológicas eficientes. Com background em logística e expertise em desenvolvimento fullstack, crio sistemas inteligentes que otimizam operações e geram valor real para negócios.
+            Arquitetando e construindo soluções de software que transformam complexidade em eficiência. Minha experiência única, unindo a otimização de processos da logística com a expertise em desenvolvimento fullstack (React, N8N, Python), me permite criar sistemas inteligentes que geram valor de negócio mensurável.
           </p>
 
           {/* Action Buttons */}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { CheckCircle, User, Target, Lightbulb } from 'lucide-react'
+import { CheckCircle, User, Target, Lightbulb, BrainCircuit, Cloud } from 'lucide-react'
 import { Tooltip } from 'react-tooltip' // PASSO 1: Importar o Tooltip
 
 const AboutSection = () => {
@@ -38,8 +38,8 @@ const AboutSection = () => {
 
               {/* Experience Highlights */}
               <div className="mt-12 grid md:grid-cols-3 gap-6">
-                <div className="text-center p-6 bg-gray-900 rounded-xl border border-gray-800"><User className="w-8 h-8 text-primary-500 mx-auto mb-3" /><h3 className="text-2xl font-bold text-white mb-2">6+</h3><p className="text-gray-400">Anos em Logística</p></div>
-                <div className="text-center p-6 bg-gray-900 rounded-xl border border-gray-800"><Target className="w-8 h-8 text-primary-500 mx-auto mb-3" /><h3 className="text-2xl font-bold text-white mb-2">30+</h3><p className="text-gray-400">Projetos Entregues</p></div>
+                <div className="text-center p-6 bg-gray-900 rounded-xl border border-gray-800"><Cloud className="w-8 h-8 text-primary-500 mx-auto mb-3" /><h3 className="text-2xl font-bold text-white mb-2">4</h3><p className="text-gray-400">Nuvens (AWS, Azure, GCP, OCI)</p></div>
+                <div className="text-center p-6 bg-gray-900 rounded-xl border border-gray-800"><BrainCircuit className="w-8 h-8 text-primary-500 mx-auto mb-3" /><h3 className="text-2xl font-bold text-white mb-2">10+</h3><p className="text-gray-400">Projetos com IA</p></div>
                 <div className="text-center p-6 bg-gray-900 rounded-xl border border-gray-800"><Lightbulb className="w-8 h-8 text-primary-500 mx-auto mb-3" /><h3 className="text-2xl font-bold text-white mb-2">24/7</h3><p className="text-gray-400">Aprendizado Contínuo</p></div>
               </div>
             </div>
