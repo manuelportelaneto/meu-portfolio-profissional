@@ -80,7 +80,7 @@ const PortfolioSection = ({ openChat }) => {
         },
         { 
             image: imgA2, // 2 - AWS Console Overview
-            caption: "Ambiente do Google BigQuery (GCP): Configuração da Camada de Análise de Dados (*Data Warehouse*) centralizando dados para Business Intelligence. (Multicloud/Data Analytics)" 
+            caption: "Ambiente do Google BigQuery (GCP): Configuração da Camada de Análise de Dados (Data Warehouse) centralizando dados para Business Intelligence. (Multicloud/Data Analytics)" 
         },
         { 
             image: imgA3, // 3 - GCP BigQuery
