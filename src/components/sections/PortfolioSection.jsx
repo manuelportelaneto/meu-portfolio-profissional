@@ -10,6 +10,7 @@ import imgDonaAntonieta from '../../assets/projects/donaantonieta.png';
 import imgAvozdoexu from '../../assets/projects/avozdoexu.png';
 import imgPortfolioPreview from '../../assets/projects/portfolio.png';
 import imgManuelBotPreview from '../../assets/projects/manuelbot.png';
+import imgVpnGcp from '../../assets/projects/VpnGcp.png';
 // Importações das imagens do projeto Cloud Mart
 import imgCloudmart from '../../assets/projects/cloudmart.jpeg';
 import imgA1 from '../../assets/projects/a01.jpeg';
@@ -219,6 +220,19 @@ const PortfolioSection = ({ openChat }) => {
       gradient: "from-purple-500 to-indigo-500",
       problem: "Transformar um portfólio estático em uma experiência interativa e 'viva', capaz de responder perguntas dos visitantes 24/7, qualificar leads (recrutadores/clientes) e demonstrar minhas habilidades de IA na prática.",
       skillsLearned: "Arquitetura de microsserviços, desenvolvimento de API REST com Node.js/Express, orquestração de conversas com a OpenAI Assistants API, engenharia de prompt para refino de persona, e deploy de aplicações serverless na nuvem."
+    },
+    {
+      title: "VPN Privada com WireGuard no GCP",
+      description: "Desenvolvimento de uma solução de VPN pessoal e segura, hospedada no Google Cloud Platform, utilizando o protocolo moderno e performático WireGuard.",
+      image: imgVpnGcp, // Substitua pelo nome da sua imagem importada
+      tags: ["GCP", "Compute Engine", "Linux", "Networking", "Firewall Rules", "WireGuard", "Segurança", "IaaS"],
+      links: [
+        { label: "Infraestrutura Privada", url: "#", icon: Lock, restricted: true }
+      ],
+      gradient: "from-blue-600 to-teal-500",
+      featured: false, // Defina como 'true' se quiser que ocupe mais espaço no grid
+      problem: "A necessidade de garantir privacidade e segurança na navegação em redes Wi-Fi públicas e contornar restrições geográficas, evitando a dependência e os logs de serviços de VPN comerciais.",
+      skillsLearned: "Provisionamento de IaaS na GCP (Compute Engine), configuração avançada de Firewall Rules para liberar portas UDP, administração de sistemas Linux (Ubuntu) via SSH, e a implementação completa de um servidor WireGuard para criar um túnel de comunicação criptografado e seguro."
     },
   ];
 
