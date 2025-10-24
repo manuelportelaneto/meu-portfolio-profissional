@@ -171,7 +171,7 @@ const PortfolioSection = ({ openChat }) => {
     },
     {
       title: "Odonto Flow - Smart Scheduling",
-      description: "Solução de automação para agendamento inteligente, otimizando a alocação de recursos e horários.",
+      description: "Construção de fluxos de automação complexos com N8N para sistema de agendamentos automatizados.",
       videoUrl: 'https://www.youtube.com/embed/oUdMQ12mRAc',
       letter: "Matrix",
       tags: ["N8N", "APIs", "WebHooks", "JavaScript", "React", "CloudFlare", "VPS", "Ubuntu", "Gemini 2.5 PRO"],
@@ -210,7 +210,7 @@ const PortfolioSection = ({ openChat }) => {
     },
     {
       title: "Manuel (bot) - Assistente Virtual com IA",
-      description: "Criação de um backend serverless em Node.js para alimentar o assistente de IA conversacional desta página, demonstrando a integração com APIs de modelos de linguagem de ponta.",
+      description: "Implementação de um Agente de IA com arquitetura baseada em RAG. Criação de um backend serverless em Node.js, assistente de IA conversacional (desta página) e integração com APIs.",
       image: imgManuelBotPreview, 
       tags: ["Node.js", "Express", "OpenAI Assistants API", "Serverless", "Render.com", "Engenharia de Prompt"],
       links: [
