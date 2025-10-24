@@ -227,12 +227,18 @@ const PortfolioSection = ({ openChat }) => {
       image: imgVpnGcp, // Substitua pelo nome da sua imagem importada
       tags: ["GCP", "Compute Engine", "Linux", "Networking", "Firewall Rules", "WireGuard", "Segurança", "IaaS"],
       links: [
-        { label: "Infraestrutura Privada", url: "#", icon: Lock, restricted: true }
+        { label: "Ver Arquitetura", icon: Layers, isGalleryButton: true }
       ],
       gradient: "from-blue-600 to-teal-500",
       featured: false, // Defina como 'true' se quiser que ocupe mais espaço no grid
       problem: "A necessidade de garantir privacidade e segurança na navegação em redes Wi-Fi públicas e contornar restrições geográficas, evitando a dependência e os logs de serviços de VPN comerciais.",
-      skillsLearned: "Provisionamento de IaaS na GCP (Compute Engine), configuração avançada de Firewall Rules para liberar portas UDP, administração de sistemas Linux (Ubuntu) via SSH, e a implementação completa de um servidor WireGuard para criar um túnel de comunicação criptografado e seguro."
+      skillsLearned: "Provisionamento de IaaS na GCP (Compute Engine), configuração avançada de Firewall Rules para liberar portas UDP, administração de sistemas Linux (Ubuntu) via SSH, e a implementação completa de um servidor WireGuard para criar um túnel de comunicação criptografado e seguro.",
+      galleryImages: [
+        { 
+          image: imgVpnGcp, // Use a mesma variável de importação do diagrama aqui
+          caption: "Diagrama de arquitetura da solução de VPN privada no Google Cloud Platform, ilustrando o fluxo de tráfego seguro através do túnel WireGuard." 
+        }
+      ]
     },
   ];
 
