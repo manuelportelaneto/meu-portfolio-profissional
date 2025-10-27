@@ -42,7 +42,7 @@ const HeroSection = () => {
           </h2>
 
           <p className="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed mb-12 animate-slide-up delay-300">
-            Arquitetando e construindo soluções de software que transformam complexidade em eficiência. Minha experiência única, unindo a otimização de processos da logística com a expertise em desenvolvimento fullstack (React, N8N, Python), me permite criar sistemas inteligentes que geram valor de negócio mensurável.
+            Transformo desafios de negócio em soluções de software inteligentes. Da otimização de processos na logística à arquitetura de sistemas Multicloud, minha missão é criar ecossistemas de IA e automação que geram valor de negócio real e mensurável.
           </p>
 
           {/* Action Buttons */}

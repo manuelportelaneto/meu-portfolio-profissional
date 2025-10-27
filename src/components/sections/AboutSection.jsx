@@ -24,15 +24,15 @@ const AboutSection = () => {
             <div className="prose prose-lg prose-invert max-w-none">
               <div className="space-y-6 text-gray-300 leading-relaxed">
                 <p className="text-xl">
-                  Minha jornada na tecnologia começou após mais de 6 anos solidificando minha carreira em logística e operações. Essa experiência me proporcionou uma visão única sobre a importância da eficiência, otimização e resolução de problemas complexos no mundo real.
+                  Com um background de mais de 6 anos otimizando operações complexas na logística, minha entrada na tecnologia foi uma progressão natural. Eu não aprendi a programar para criar software; aprendi a programar para <span className="text-primary-400 font-medium">resolver problemas de negócio em escala</span>.
                 </p>
 
-                <p>
-                  Hoje, como <span className="text-primary-400 font-medium">Estudante de Análise e Desenvolvimento de Sistemas</span>, eu aplico essa mentalidade analítica para construir soluções de software robustas. Sou apaixonado por conectar o mundo dos negócios à tecnologia, utilizando Inteligência Artificial Generativa, Cloud Computing e ferramentas de automação como N8N para criar não apenas código, mas resultados tangíveis.
+                <p className="text-xl">
+                  Hoje, como Arquiteto de Soluções, aplico essa mentalidade analítica e pragmática para projetar e construir sistemas de ponta a ponta. Minha especialidade é o ecossistema moderno: <span className="text-primary-400 font-medium">IA Generativa (OpenAI, Gemini, Claude, RAG, MCP), Automação de Processos (n8n)</span> e a infraestrutura <span className="text-primary-400 font-medium">Multicloud (AWS, Azure, GCP, OCI)</span> que os sustenta.
                 </p>
 
-                <p>
-                  Seja desenvolvendo páginas web responsivas, administrando sistemas em nuvem ou criando conteúdo dinâmico com IA, meu foco é sempre o mesmo: <span className="text-primary-400 font-medium">entregar soluções inteligentes que fazem a diferença</span>.
+                <p className="text-xl">
+                  Da ideação de um agente de IA à sua implantação em um cluster <span className="text-primary-400 font-medium">Kubernetes</span> via pipelines de <span className="text-primary-400 font-medium">CI/CD</span>, meu foco é o ciclo de vida completo. A tecnologia é a ferramenta, <span className="text-primary-400 font-medium">resultados tangíveis são o que eu entrego.</span>                  
                 </p>
               </div>
 
