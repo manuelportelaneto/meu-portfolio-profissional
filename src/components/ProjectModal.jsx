@@ -60,9 +60,9 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                   <div>
                     <div className="flex items-center gap-3 mb-2">
                       <Star className="text-green-400" size={20} />
-                      <h4 className="text-lg font-semibold text-white">Habilidades Adquiridas</h4>
+                      <h4 className="text-lg font-semibold text-white">Habilidades Empregadas</h4>
                     </div>
-                    <p className="text-gray-300 text-sm leading-relaxed">{project.skillsLearned}</p>
+                    <p className="text-gray-300 text-sm leading-relaxed">{project.skillsUsed}</p>
                   </div>
                 </div>
 

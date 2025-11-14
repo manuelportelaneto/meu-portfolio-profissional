@@ -25,6 +25,12 @@ import imgA9 from '../../assets/projects/a09.jpeg';
 import imgA10 from '../../assets/projects/a10.jpeg';
 import imgA11 from '../../assets/projects/a11.jpeg';
 import imgA12 from '../../assets/projects/a12.jpeg';
+// Importações do Digital Nexus
+import imgGrafanaFinal from '../../assets/projects/digitalnexus/grafana-final.jpeg';
+import imgTerraformAws from '../../assets/projects/digitalnexus/terraform-aws.png';
+import imgTerraformGcp from '../../assets/projects/digitalnexus/terraform-gcp.png';
+import imgDynamoDB from '../../assets/projects/digitalnexus/dynamodb-data.png';
+import imgApiReaderCode from '../../assets/projects/digitalnexus/api-reader-code.png';
 
 const PortfolioSection = ({ openChat }) => {
   // Estado para controlar a visibilidade do modal e o projeto selecionado
@@ -69,7 +75,7 @@ const PortfolioSection = ({ openChat }) => {
     gradient: "from-fuchsia-500 to-red-500", 
     featured: true, 
     problem: "Criar uma plataforma de e-commerce escalável de próxima geração (next-gen) que unisse microsserviços (Kubernetes), análise de dados (GCP BigQuery), gerenciamento de clientes com suporte IA e rastreamento de infraestrutura em múltiplos provedores Cloud, mantendo o full stack expertise.",
-    skillsLearned: "Implementação completa de microsserviços em EKS, arquitetura Multicloud com serviços nativos (AWS CodePipeline/DynamoDB e GCP BigQuery/Azure Deployment), uso de Machine Learning e Análise de Sentimento em tickets de suporte para obter customer insights, e deploy CI/CD automatizado via Pipeline as Code.",
+    skillsUsed: "Implementação completa de microsserviços em EKS, arquitetura Multicloud com serviços nativos (AWS CodePipeline/DynamoDB e GCP BigQuery/Azure Deployment), uso de Machine Learning e Análise de Sentimento em tickets de suporte para obter customer insights, e deploy CI/CD automatizado via Pipeline as Code.",
     galleryImages: [
         { 
             image: imgCloudmart, // 0 - CAPA: Main Products + Chatbot AI
@@ -136,7 +142,7 @@ const PortfolioSection = ({ openChat }) => {
       ],
       gradient: "from-blue-500 to-purple-500",
       problem: "Clínicas odontológicas enfrentavam dificuldades com sistemas de agendamento desatualizados, resultando em alta taxa de 'no-shows' e sobrecarga de trabalho administrativo para a equipe da recepção.",
-      skillsLearned: "Desenvolvimento de uma aplicação full-stack em tempo real com Firebase, uso avançado de TailwindCSS para interfaces complexas e aplicação de IAs generativas para acelerar o desenvolvimento de código e assets."
+      skillsUsed: "Desenvolvimento de uma aplicação full-stack em tempo real com Firebase, uso avançado de TailwindCSS para interfaces complexas e aplicação de IAs generativas para acelerar o desenvolvimento de código e assets."
     },
     {
       title: "Desenvolvimento E-commerce",
@@ -146,7 +152,7 @@ const PortfolioSection = ({ openChat }) => {
       links: [{ label: "Ver no Upwork", url: "https://www.upwork.com/freelancers/~01ccf5e1820f05697e?p=1852095935804694528", icon: ExternalLink }],
       gradient: "from-orange-500 to-red-500",
       problem: "Uma pequena empresa necessitava de uma presença online para vender seus produtos, mas não tinha o conhecimento técnico para criar uma loja virtual segura, responsiva e com gateways de pagamento integrados.",
-      skillsLearned: "Implementação completa de plataformas de e-commerce com WooCommerce, desde a configuração de produtos e gateways de pagamento até a personalização do design para corresponder à identidade da marca do cliente."
+      skillsUsed: "Implementação completa de plataformas de e-commerce com WooCommerce, desde a configuração de produtos e gateways de pagamento até a personalização do design para corresponder à identidade da marca do cliente."
     },
     {
       title: "Provisionamento de Recursos em Nuvem",
@@ -157,7 +163,7 @@ const PortfolioSection = ({ openChat }) => {
       gradient: "from-indigo-500 to-blue-500",
       featured: true,
       problem: "Empresas necessitavam de uma maneira rápida e replicável para criar ambientes de desenvolvimento e produção em múltiplas nuvens, reduzindo o tempo de setup manual e o risco de erros de configuração.",
-      skillsLearned: "Domínio de Infraestrutura como Código (IaC) com Terraform, orquestração de contêineres com Kubernetes e deployment em plataformas serverless como Cloud Run, aprimorando a capacidade de construir soluções escaláveis e resilientes."
+      skillsUsed: "Domínio de Infraestrutura como Código (IaC) com Terraform, orquestração de contêineres com Kubernetes e deployment em plataformas serverless como Cloud Run, aprimorando a capacidade de construir soluções escaláveis e resilientes."
     },
     {
       title: "Blog A Voz Do Exu",
@@ -167,7 +173,7 @@ const PortfolioSection = ({ openChat }) => {
       links: [{ label: "Ver Blog", url: "https://avozdoexu.lovestoblog.com/", icon: BookOpen }],
       gradient: "from-gray-700 to-gray-900",
       problem: "O portal precisava de uma plataforma de conteúdo que fosse visualmente atraente e imersiva, criando um ambiente temático para os visitantes. Neste projeto, criei um blog completo utilizando WordPress e Elementor, e criei uma landing page personalizada para gerar vendas",
-      skillsLearned: "Customização avançada de temas WordPress com Elementor, técnicas de otimização de performance (PageSpeed) e implementação de melhores práticas de SEO On-Page para maximizar a visibilidade orgânica."
+      skillsUsed: "Customização avançada de temas WordPress com Elementor, técnicas de otimização de performance (PageSpeed) e implementação de melhores práticas de SEO On-Page para maximizar a visibilidade orgânica."
     },
     {
       title: "Odonto Flow - Smart Scheduling",
@@ -181,7 +187,44 @@ const PortfolioSection = ({ openChat }) => {
       ],
       gradient: "from-green-500 to-teal-500",
       problem: "Processos de agendamento dependiam de trocas de e-mails e planilhas, causando erros, agendamentos duplos, consumiam tempo valioso da equipe, que poderia ser usado em tarefas de maior valor. Solucionando também falhas de comunicação devido a quedas de energia, pois a arquitetura do sistema é descentralizada e independente.",
-      skillsLearned: "Construção de fluxos de automação complexos com N8N, integração de múltiplas APIs (Google Calendar, email, etc.), desenvolvimento de lógicas condicionais com JavaScript para criar um sistema de agendamento verdadeiramente autônomo, e VPS para hospedagem."
+      skillsUsed: "Construção de fluxos de automação complexos com N8N, integração de múltiplas APIs (Google Calendar, email, etc.), desenvolvimento de lógicas condicionais com JavaScript para criar um sistema de agendamento verdadeiramente autônomo, e VPS para hospedagem."
+    },
+    {
+      title: "Digital Nexus - Plataforma de FinOps Multicloud",
+      description: "Construção de uma plataforma serverless de Business Intelligence para unificar, processar e visualizar dados de custos de múltiplos provedores de nuvem (AWS e GCP).",
+      image: imgGrafanaFinal,
+      tags: ["FinOps", "DevOps", "Serverless", "IaC", "Multicloud", "AWS", "GCP", "Terraform", "DynamoDB", "API Gateway", "Lambda", "Grafana"],
+      links: [
+        // Se você tiver o repositório no GitHub, adicione o link aqui
+        // { label: "Ver Código no GitHub", url: "SEU_LINK_AQUI", icon: Github },
+        { label: "Ver Galeria", url: "#", icon: Layers, isGalleryButton: true, iconOnly: true },
+      ],
+      gradient: "from-sky-500 to-indigo-600",
+      featured: true,
+      problem: "Empresas que operam em multicloud enfrentam o desafio da visibilidade fragmentada de custos, dificultando a tomada de decisões financeiras estratégicas.",
+      skillsUsed: "Arquitetura de sistemas distribuídos, engenharia de dados em pipelines ETL serverless, automação de infraestrutura cross-cloud com Terraform e criação de dashboards de BI interativos.",
+      galleryImages: [
+        {
+          image: imgTerraformAws, // Nome da imagem 3
+          caption: "IaC - AWS: Trecho de código Terraform responsável por provisionar a infraestrutura do coletor AWS, incluindo a função Lambda, IAM Role e o trigger do EventBridge."
+        },
+        {
+          image: imgTerraformGcp, // Nome da imagem 4
+          caption: "IaC - GCP: Código Terraform provisionando a infraestrutura no GCP, incluindo a Cloud Function, Service Account e o Cloud Scheduler."
+        },
+        {
+          image: imgDynamoDB, // Nome da imagem 5
+          caption: "DATA LAKE: Console do DynamoDB exibindo os dados de custo já unificados e no formato granular, com registros de ambos os provedores (AWS e GCP)."
+        },
+        {
+          image: imgApiReaderCode, // Nome da imagem 6
+          caption: "API DE SERVIÇO: Código-fonte da Lambda (api_reader.py), responsável por ler os dados do DynamoDB e servi-los para o Grafana de forma otimizada."
+        },
+        {
+          image: imgGrafanaFinal, // Nome da imagem 1
+          caption: "PAINEL FINAL: Dashboard de BI em Grafana, consolidando dados da AWS e GCP em uma visão única e interativa, com KPIs e gráficos históricos."
+        }
+      ]
     },
     {
       title: "Site Institucional - Dona Antonieta",
@@ -194,7 +237,7 @@ const PortfolioSection = ({ openChat }) => {
       ],
       gradient: "from-pink-500 to-rose-500",
       problem: "Um artista teatral precisava de um espaço digital para exibir seu portfólio de forma elegante e profissional, que fosse fácil de navegar e que transmitisse a essência do seu trabalho artístico, com SEO otimizado para atrair mais visitantes, e ferramentas analíticas para monitorar o desempenho do site.",
-      skillsLearned: "Foco nos fundamentos do desenvolvimento web (HTML, CSS e Javascript sem frameworks) para criar um site leve e performático. Habilidade em traduzir uma visão artística em um design web funcional e esteticamente agradável. Otimização de SEO e implementação de ferramentas analíticas para insights sobre o comportamento dos visitantes."
+      skillsUsed: "Foco nos fundamentos do desenvolvimento web (HTML, CSS e Javascript sem frameworks) para criar um site leve e performático. Habilidade em traduzir uma visão artística em um design web funcional e esteticamente agradável. Otimização de SEO e implementação de ferramentas analíticas para insights sobre o comportamento dos visitantes."
     },
     {
       title: "Portfólio Profissional (Esta Página)",
@@ -206,7 +249,7 @@ const PortfolioSection = ({ openChat }) => {
       ],
       gradient: "from-cyan-500 to-blue-500",
       problem: "A necessidade de consolidar minhas habilidades, projetos e experiências em uma plataforma única, interativa e profissional, que fosse visualmente atraente para recrutadores e otimizada para SEO.",
-      skillsLearned: "Aprofundamento em React Hooks, componentização, estilização com Tailwind CSS, implementação de animações com Framer Motion, e configuração de um pipeline de CI/CD completo com GitHub Actions para automação do deploy."
+      skillsUsed: "Aprofundamento em React Hooks, componentização, estilização com Tailwind CSS, implementação de animações com Framer Motion, e configuração de um pipeline de CI/CD completo com GitHub Actions para automação do deploy."
     },
     {
       title: "Manuel (bot) - Assistente Virtual com IA",
@@ -219,7 +262,7 @@ const PortfolioSection = ({ openChat }) => {
       ],
       gradient: "from-purple-500 to-indigo-500",
       problem: "Transformar um portfólio estático em uma experiência interativa e 'viva', capaz de responder perguntas dos visitantes 24/7, qualificar leads (recrutadores/clientes) e demonstrar minhas habilidades de IA na prática.",
-      skillsLearned: "Arquitetura de microsserviços, desenvolvimento de API REST com Node.js/Express, orquestração de conversas com a OpenAI Assistants API, engenharia de prompt para refino de persona, e deploy de aplicações serverless na nuvem."
+      skillsUsed: "Arquitetura de microsserviços, desenvolvimento de API REST com Node.js/Express, orquestração de conversas com a OpenAI Assistants API, engenharia de prompt para refino de persona, e deploy de aplicações serverless na nuvem."
     },
     {
       title: "VPN Privada com WireGuard no GCP",
@@ -232,7 +275,7 @@ const PortfolioSection = ({ openChat }) => {
       gradient: "from-blue-600 to-teal-500",
       featured: false, // Defina como 'true' se quiser que ocupe mais espaço no grid
       problem: "A necessidade de garantir privacidade e segurança na navegação em redes Wi-Fi públicas e contornar restrições geográficas, evitando a dependência e os logs de serviços de VPN comerciais.",
-      skillsLearned: "Provisionamento de IaaS na GCP (Compute Engine), configuração avançada de Firewall Rules para liberar portas UDP, administração de sistemas Linux (Ubuntu) via SSH, e a implementação completa de um servidor WireGuard para criar um túnel de comunicação criptografado e seguro.",
+      skillsUsed: "Provisionamento de IaaS na GCP (Compute Engine), configuração avançada de Firewall Rules para liberar portas UDP, administração de sistemas Linux (Ubuntu) via SSH, e a implementação completa de um servidor WireGuard para criar um túnel de comunicação criptografado e seguro.",
       galleryImages: [
         { 
           image: imgVpnGcp, // Use a mesma variável de importação do diagrama aqui
