@@ -1,0 +1,53 @@
+# Nome do nosso workflow. Aparecerá na aba "Actions" do GitHub.
+name: Deploy to Hostinger
+
+# Gatilho: Este workflow roda toda vez que houver um push na branch 'main'.
+on:
+  push:
+    branches: [ main ]
+
+# Tarefas: A lista de coisas que o workflow vai fazer.
+jobs:
+  build-and-deploy:
+    # Usaremos uma máquina virtual com a última versão do Ubuntu.
+    runs-on: ubuntu-latest
+
+    # Passos: A sequência de ações a serem executadas.
+    steps:
+    # Passo 1: Baixa o código do seu repositório para a máquina virtual.
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Passo 2: Configura o ambiente Node.js.
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18' # Use uma versão LTS (Long Term Support) do Node
+        cache: 'npm' # Habilita o cache para acelerar instalações futuras
+
+    # Passo 3: Instala as dependências do projeto.
+    - name: Install dependencies
+      run: npm install
+
+    # Passo 4: Constrói o projeto para produção. Cria a pasta 'dist'.
+    - name: Build project
+      run: npm run build
+      # Garante que as configurações do vite.config.js sejam usadas corretamente
+      env:
+        VITE_BASE: './' 
+
+    # Passo 5: Implanta os arquivos na Hostinger usando FTP.
+    - name: FTP Deploy
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        # Pega as credenciais dos segredos que configuramos no GitHub.
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        # Diretório de origem: a pasta que queremos enviar.
+        local-dir: ./dist/
+        # Diretório de destino: a pasta raiz do seu site na Hostinger.
+        server-dir: /public_html/
+        # Opção para limpar o destino antes de enviar, garantindo que arquivos antigos sejam removidos.
+        dangerous-clean-slate: true
+        
