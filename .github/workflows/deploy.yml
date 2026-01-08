@@ -22,7 +22,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18' # Use uma versão LTS (Long Term Support) do Node
+        node-version: '22.x' # Use Node 22 to match Cloudflare environment
         cache: 'npm' # Habilita o cache para acelerar instalações futuras
 
     # Passo 3: Instala as dependências do projeto.
