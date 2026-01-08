@@ -1,4 +1,3 @@
-import React from 'react';
 import { X } from 'lucide-react';
 
 const PrivacyModal = ({ isOpen, onClose }) => {
@@ -6,19 +5,19 @@ const PrivacyModal = ({ isOpen, onClose }) => {
 
   return (
     // Backdrop - Fundo escuro semi-transparente
-    <div 
+    <div
       className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50"
       onClick={onClose}
     >
       {/* Modal Content - O container principal do modal */}
-      <div 
+      <div
         className="bg-gray-900 border border-gray-700 rounded-2xl shadow-xl w-11/12 md:w-3/4 lg:w-1/2 max-h-[80vh] flex flex-col"
         onClick={e => e.stopPropagation()} // Impede que o clique dentro do modal o feche
       >
         {/* Cabeçalho do Modal */}
         <div className="flex justify-between items-center p-4 border-b border-gray-700">
           <h2 className="text-xl font-bold text-white">Política de Privacidade e Cookies</h2>
-          <button 
+          <button
             onClick={onClose}
             className="p-2 rounded-full hover:bg-gray-700 transition-colors"
           >
@@ -42,13 +41,13 @@ const PrivacyModal = ({ isOpen, onClose }) => {
             <li><strong>Cookies:</strong> Pequenos arquivos são armazenados no seu navegador para auxiliar no funcionamento das ferramentas de análise e para registrar o seu consentimento sobre o uso de cookies.</li>
           </ul>
           <p className="mt-2">Os dados coletados podem incluir seu endereço IP (anonimizado), tipo de dispositivo e navegador, páginas visitadas e tempo gasto no site.</p>
-          
+
           <h3 className="text-lg font-semibold text-white mt-4 mb-2">3. Uso dos Dados</h3>
           <p>As informações coletadas são usadas exclusivamente para fins analíticos, com o objetivo de entender quais seções do portfólio são mais interessantes, identificar problemas de usabilidade e otimizar a performance do site. Nenhum dado coletado é vendido ou compartilhado com terceiros para fins de marketing.</p>
-          
+
           <h3 className="text-lg font-semibold text-white mt-4 mb-2">4. Seus Direitos</h3>
           <p>Você tem o direito de gerenciar e desabilitar cookies através das configurações do seu navegador.</p>
-          
+
           <h3 className="text-lg font-semibold text-white mt-4 mb-2">5. Contato</h3>
           <p>Se tiver qualquer dúvida sobre esta política de privacidade, por favor, entre em contato através do e-mail: manuelportela@cloudmatrix.com.br.</p>
         </div>

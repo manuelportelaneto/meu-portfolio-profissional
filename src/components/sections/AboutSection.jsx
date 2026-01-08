@@ -1,5 +1,4 @@
-import React from 'react'
-import { CheckCircle, User, Target, Lightbulb, BrainCircuit, Cloud } from 'lucide-react'
+import { CheckCircle, Lightbulb, BrainCircuit, Cloud } from 'lucide-react'
 import { Tooltip } from 'react-tooltip' // PASSO 1: Importar o Tooltip
 
 const AboutSection = () => {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { BookOpen, PenTool, Ear, MessageCircle } from 'lucide-react';
 
 // Função auxiliar para obter os estilos de cor com base no nível
@@ -78,7 +77,7 @@ const LanguagesSection = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 max-w-7xl mx-auto">
           {languagesData.map((lang, index) => (
-            <div 
+            <div
               key={index}
               className="card group hover:transform hover:scale-105 transition-all duration-500"
             >
@@ -95,7 +94,7 @@ const LanguagesSection = () => {
                 {lang.levels.map((item, itemIndex) => {
                   const Icon = item.icon;
                   return (
-                    <div 
+                    <div
                       key={itemIndex}
                       className="flex items-center justify-between gap-4 p-2 rounded-lg hover:bg-gray-800 transition-colors duration-200"
                     >

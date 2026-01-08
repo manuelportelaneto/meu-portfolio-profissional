@@ -1,4 +1,3 @@
-import React from 'react'
 import { Bot, Cloud, Code, BarChart3 } from 'lucide-react'
 
 // Objeto para centralizar os estilos de proficiência
@@ -29,7 +28,7 @@ const SkillsSection = () => {
       title: "IA & Automação",
       skills: [
         "IA Generativa",
-        "Engenharia de Prompt", 
+        "Engenharia de Prompt",
         "N8N",
         "Python",
         "PLN",
@@ -43,7 +42,7 @@ const SkillsSection = () => {
       title: "Cloud & DevOps",
       skills: [
         "Google Cloud",
-        "Microsoft Azure", 
+        "Microsoft Azure",
         "Docker",
         "Servidores Linux",
         "CI/CD",
@@ -57,7 +56,7 @@ const SkillsSection = () => {
       title: "Desenvolvimento Web",
       skills: [
         "HTML",
-        "CSS", 
+        "CSS",
         "JavaScript",
         "React",
         "Node.js",
@@ -74,7 +73,7 @@ const SkillsSection = () => {
       skills: [
         "Power BI",
         "Excel Avançado",
-        "Análise de Dados", 
+        "Análise de Dados",
         "Modelagem de Dados",
         "Business Intelligence",
         "Visualização"
@@ -96,7 +95,7 @@ const SkillsSection = () => {
             const proficiencyStyle = proficiencyLevels[category.proficiency];
 
             return (
-              <div 
+              <div
                 key={index}
                 className="card group hover:transform hover:scale-105 transition-all duration-500"
               >
@@ -113,7 +112,7 @@ const SkillsSection = () => {
                 {/* Skills List */}
                 <div className="space-y-3">
                   {category.skills.map((skill, skillIndex) => (
-                    <div 
+                    <div
                       key={skillIndex}
                       className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-800 transition-colors duration-200"
                     >
@@ -130,7 +129,7 @@ const SkillsSection = () => {
                     <span className={`text-xs ${proficiencyStyle.textColor} font-medium`}>{proficiencyStyle.label}</span>
                   </div>
                   <div className="w-full bg-gray-800 rounded-full h-2">
-                    <div 
+                    <div
                       className={`h-2 rounded-full bg-gradient-to-r ${category.gradient} animate-pulse`}
                       style={{ width: proficiencyStyle.width }}
                     ></div>
@@ -146,13 +145,13 @@ const SkillsSection = () => {
           <h3 className="text-2xl font-bold text-white mb-8">Outras Competências</h3>
           <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
             {[
-              "WordPress", "WooCommerce", "Git", "GitHub", 
-              "API Integration", "Database Design", "UI/UX", 
-              "Agile Methodology", "Project Management", "Firebase", 
-              "Cloudflare", "SEO", "Python", "Notion", "Figma", 
+              "WordPress", "WooCommerce", "Git", "GitHub",
+              "API Integration", "Database Design", "UI/UX",
+              "Agile Methodology", "Project Management", "Firebase",
+              "Cloudflare", "SEO", "Python", "Notion", "Figma",
               "Canva", "ChatGPT", "Gemini", "BlackBox AI"
             ].map((skill, index) => (
-              <span 
+              <span
                 key={index}
                 className="px-4 py-2 bg-gray-800 border border-gray-700 rounded-full text-gray-300 hover:border-primary-500 hover:text-primary-400 transition-all duration-300 cursor-default"
               >

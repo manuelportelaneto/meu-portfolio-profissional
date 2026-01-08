@@ -1,4 +1,3 @@
-import React from 'react'
 import { Heart, Code, Coffee, Github, Linkedin, Mail } from 'lucide-react'
 
 const Footer = () => {
@@ -12,11 +11,11 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold text-gradient mb-4">Manuel Portela</h3>
             <p className="text-gray-400 leading-relaxed mb-4">
-              Desenvolvedor de Sistemas especializado em Desenvolvimento Web, IA Generativa, Cloud e Automação. 
+              Desenvolvedor de Sistemas especializado em Desenvolvimento Web, IA Generativa, Cloud e Automação.
               Transformando ideias em soluções tecnológicas eficientes.
             </p>
             <div className="flex gap-4">
-              <a 
+              <a
                 href="https://github.com/manuelportelaneto"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -24,7 +23,7 @@ const Footer = () => {
               >
                 <Github className="w-5 h-5" />
               </a>
-              <a 
+              <a
                 href="https://www.linkedin.com/in/manuelportelaneto/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -32,7 +31,7 @@ const Footer = () => {
               >
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a 
+              <a
                 href="mailto:manuelportela@cloudmatrix.com.br"
                 className="p-2 bg-gray-800 rounded-lg hover:bg-primary-500 transition-colors"
               >
@@ -52,7 +51,7 @@ const Footer = () => {
                 { label: 'Contato', href: '#contact' }
               ].map((link, index) => (
                 <li key={index}>
-                  <a 
+                  <a
                     href={link.href}
                     className="text-gray-400 hover:text-primary-400 transition-colors text-sm"
                   >
@@ -85,9 +84,9 @@ const Footer = () => {
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-400 text-sm flex items-center gap-2">
-              © {currentYear} Manuel Portela Neto. Feito com 
-              <Heart className="w-4 h-4 text-red-500" />, 
-              <Code className="w-4 h-4 text-primary-500" /> e 
+              © {currentYear} Manuel Portela Neto. Feito com
+              <Heart className="w-4 h-4 text-red-500" />,
+              <Code className="w-4 h-4 text-primary-500" /> e
               <Coffee className="w-4 h-4 text-yellow-500" />
             </p>
 

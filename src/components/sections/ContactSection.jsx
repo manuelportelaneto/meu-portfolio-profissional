@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Mail, Phone, Linkedin, Copy, MessageCircle, Users, Heart } from 'lucide-react'
+import { useState } from 'react'
+import { Mail, Linkedin, MessageCircle, Users, Heart } from 'lucide-react'
 
 const ContactSection = () => {
   const [copiedEmail, setCopiedEmail] = useState(false)
@@ -21,7 +21,7 @@ const ContactSection = () => {
       gradient: "from-blue-500 to-cyan-500"
     },
     {
-      title: "WhatsApp", 
+      title: "WhatsApp",
       value: "+55 11 92006 5300",
       description: "Conversas rápidas e diretas",
       icon: MessageCircle,

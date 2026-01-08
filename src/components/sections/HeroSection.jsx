@@ -1,11 +1,10 @@
-import React from 'react'
-import { ChevronDown, Download, Mail, Github, Linkedin } from 'lucide-react'
+import { ChevronDown, Mail, Github, Linkedin } from 'lucide-react'
 import profilePic from '../../assets/projects/manuelportela.png';
 
 const HeroSection = () => {
   const scrollToSection = (sectionId) => {
-    document.getElementById(sectionId)?.scrollIntoView({ 
-      behavior: 'smooth' 
+    document.getElementById(sectionId)?.scrollIntoView({
+      behavior: 'smooth'
     });
   };
 
@@ -22,8 +21,8 @@ const HeroSection = () => {
           <div className="mb-8 flex justify-center">
             <div className="w-40 h-40 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 p-1 animate-float">
               <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center">
-                <img 
-                  src={profilePic} 
+                <img
+                  src={profilePic}
                   alt="Manuel Portela Neto"
                   className="w-full h-full rounded-full object-cover object-top"
                 />
@@ -37,7 +36,7 @@ const HeroSection = () => {
           </h1>
 
           <h2 className="text-xl md:text-2xl text-gray-300 mb-8 animate-slide-up delay-200">
-            Arquiteto de Soluções & DevOps<br/>
+            Arquiteto de Soluções & DevOps<br />
             IA Generativa | Multicloud | Automação de Processos
           </h2>
 
@@ -47,14 +46,14 @@ const HeroSection = () => {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-slide-up delay-500">
-            <button 
+            <button
               onClick={() => scrollToSection('portfolio')}
               className="btn-primary inline-flex items-center gap-2"
             >
               Ver Projetos
               <ChevronDown className="w-5 h-5" />
             </button>
-            <button 
+            <button
               onClick={() => scrollToSection('contact')}
               className="btn-secondary inline-flex items-center gap-2"
             >
@@ -65,17 +64,17 @@ const HeroSection = () => {
 
           {/* Social Links */}
           <div className="flex justify-center gap-6 mb-8 animate-slide-up delay-700">
-            <a 
-              href="https://github.com/manuelportelaneto" 
-              target="_blank" 
+            <a
+              href="https://github.com/manuelportelaneto"
+              target="_blank"
               rel="noopener noreferrer"
               className="p-3 bg-gray-800 rounded-full hover:bg-primary-500 transition-all duration-300 hover:scale-110"
             >
               <Github className="w-6 h-6" />
             </a>
-            <a 
-              href="https://www.linkedin.com/in/manuelportelaneto/" 
-              target="_blank" 
+            <a
+              href="https://www.linkedin.com/in/manuelportelaneto/"
+              target="_blank"
               rel="noopener noreferrer"
               className="p-3 bg-gray-800 rounded-full hover:bg-primary-500 transition-all duration-300 hover:scale-110"
             >

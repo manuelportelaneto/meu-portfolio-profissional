@@ -1,10 +1,10 @@
-import React, { useState } from 'react' // Adicionado useState
-import { ExternalLink, Github, Lock, Briefcase, Cloud, BookOpen, Layers, Code2, MessageCircle } from 'lucide-react'
+import { useState } from 'react' // Adicionado useState
+import { ExternalLink, Github, Lock, Cloud, BookOpen, Layers, Code2, MessageCircle } from 'lucide-react'
 import ProjectModal from '../ProjectModal'; // Importa nosso novo componente de modal
 import ProjectGalleryModal from '../ProjectGalleryModal'; // NOVO: Importa o componente para a galeria
 
 // Importações de imagens 
-import imgVirtualMachines from '../../assets/projects/virtualmachines.png'; 
+import imgVirtualMachines from '../../assets/projects/virtualmachines.png';
 import imgEcommerce from '../../assets/projects/ecommerce.png';
 import imgDonaAntonieta from '../../assets/projects/donaantonieta.png';
 import imgAvozdoexu from '../../assets/projects/avozdoexu.png';
@@ -38,17 +38,17 @@ const PortfolioSection = ({ openChat }) => {
   const [selectedProject, setSelectedProject] = useState(null);
 
   //Novo state para a galeria
-  const [isGalleryOpen, setIsGalleryOpen] = useState(false); 
-  
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+
   // Função que abre a galeria e define o projeto (Chamado por "Ver Projeto")
   const openGalleryModal = (project) => {
-      setSelectedProject(project);
-      setIsGalleryOpen(true);
+    setSelectedProject(project);
+    setIsGalleryOpen(true);
   };
-  
+
   const closeGalleryModal = () => {
-      setIsGalleryOpen(false);
-      setSelectedProject(null);
+    setIsGalleryOpen(false);
+    setSelectedProject(null);
   };
 
   const openModal = (project) => {
@@ -63,73 +63,73 @@ const PortfolioSection = ({ openChat }) => {
 
   const projects = [
     {
-    title: "CloudMart - E-commerce com IA e Multicloud",
-    description: "E-commerce totalmente funcional (Fullstack, IA e DevOps) demonstrando a implementação de microsserviços em arquitetura Multicloud (AWS, Azure, GCP).",
-    image: imgCloudmart, // imgCloudmart deve ser a imagem de Capa (Front-end E-commerce com Chatbot AI)
-    tags: ["AWS", "Azure", "GCP", "Kubernetes", "EKS", "DynamoDB", "BigQuery", "React", "Node.js", "AI/GenAI"],
-    links: [
-        { label: "Ver Projeto (Galeria)", isGalleryButton: true, icon: Cloud },  
+      title: "CloudMart - E-commerce com IA e Multicloud",
+      description: "E-commerce totalmente funcional (Fullstack, IA e DevOps) demonstrando a implementação de microsserviços em arquitetura Multicloud (AWS, Azure, GCP).",
+      image: imgCloudmart, // imgCloudmart deve ser a imagem de Capa (Front-end E-commerce com Chatbot AI)
+      tags: ["AWS", "Azure", "GCP", "Kubernetes", "EKS", "DynamoDB", "BigQuery", "React", "Node.js", "AI/GenAI"],
+      links: [
+        { label: "Ver Projeto (Galeria)", isGalleryButton: true, icon: Cloud },
         // ALTERAÇÃO CRÍTICA: Botão do GitHub AGORA ATIVO para verificação de código!
-        { label: "Ver Código no GitHub", url: "https://github.com/manuelportelaneto/cloudmart", icon: Github, restricted: false } 
-    ],
-    gradient: "from-fuchsia-500 to-red-500", 
-    featured: true, 
-    problem: "Criar uma plataforma de e-commerce escalável de próxima geração (next-gen) que unisse microsserviços (Kubernetes), análise de dados (GCP BigQuery), gerenciamento de clientes com suporte IA e rastreamento de infraestrutura em múltiplos provedores Cloud, mantendo o full stack expertise.",
-    skillsUsed: "Implementação completa de microsserviços em EKS, arquitetura Multicloud com serviços nativos (AWS CodePipeline/DynamoDB e GCP BigQuery/Azure Deployment), uso de Machine Learning e Análise de Sentimento em tickets de suporte para obter customer insights, e deploy CI/CD automatizado via Pipeline as Code.",
-    galleryImages: [
-        { 
-            image: imgCloudmart, // 0 - CAPA: Main Products + Chatbot AI
-            caption: "Front-end E-commerce: Interface principal com integração ao AI Assistant (Chatbot), demonstrando o núcleo da aplicação. (Fullstack/IA)" 
+        { label: "Ver Código no GitHub", url: "https://github.com/manuelportelaneto/cloudmart", icon: Github, restricted: false }
+      ],
+      gradient: "from-fuchsia-500 to-red-500",
+      featured: true,
+      problem: "Criar uma plataforma de e-commerce escalável de próxima geração (next-gen) que unisse microsserviços (Kubernetes), análise de dados (GCP BigQuery), gerenciamento de clientes com suporte IA e rastreamento de infraestrutura em múltiplos provedores Cloud, mantendo o full stack expertise.",
+      skillsUsed: "Implementação completa de microsserviços em EKS, arquitetura Multicloud com serviços nativos (AWS CodePipeline/DynamoDB e GCP BigQuery/Azure Deployment), uso de Machine Learning e Análise de Sentimento em tickets de suporte para obter customer insights, e deploy CI/CD automatizado via Pipeline as Code.",
+      galleryImages: [
+        {
+          image: imgCloudmart, // 0 - CAPA: Main Products + Chatbot AI
+          caption: "Front-end E-commerce: Interface principal com integração ao AI Assistant (Chatbot), demonstrando o núcleo da aplicação. (Fullstack/IA)"
         },
-        { 
-            image: imgA1, // 1 - Your Cart
-            caption: "Console Principal da AWS: Visão de alto nível (Overview) dos serviços fundamentais utilizados: EKS, IAM, CodePipeline e DynamoDB. (AWS Infra Overview)" 
+        {
+          image: imgA1, // 1 - Your Cart
+          caption: "Console Principal da AWS: Visão de alto nível (Overview) dos serviços fundamentais utilizados: EKS, IAM, CodePipeline e DynamoDB. (AWS Infra Overview)"
         },
-        { 
-            image: imgA2, // 2 - AWS Console Overview
-            caption: "Ambiente do Google BigQuery (GCP): Configuração da Camada de Análise de Dados (Data Warehouse) centralizando dados para Business Intelligence. (Multicloud/Data Analytics)" 
+        {
+          image: imgA2, // 2 - AWS Console Overview
+          caption: "Ambiente do Google BigQuery (GCP): Configuração da Camada de Análise de Dados (Data Warehouse) centralizando dados para Business Intelligence. (Multicloud/Data Analytics)"
         },
-        { 
-            image: imgA3, // 3 - GCP BigQuery
-            caption: "Painel do AWS CodeBuild: Projetos de compilação ativos. Prova da infraestrutura de Continuous Integration (CI). (DevOps/CI)" 
+        {
+          image: imgA3, // 3 - GCP BigQuery
+          caption: "Painel do AWS CodeBuild: Projetos de compilação ativos. Prova da infraestrutura de Continuous Integration (CI). (DevOps/CI)"
         },
-        { 
-            image: imgA4, // 4 - AWS CodeBuild
-            caption: "Pipeline de Entrega Contínua (CI/CD) com status de sucesso no deploy. A espinha dorsal da entrega automatizada. (DevOps/CD)" 
+        {
+          image: imgA4, // 4 - AWS CodeBuild
+          caption: "Pipeline de Entrega Contínua (CI/CD) com status de sucesso no deploy. A espinha dorsal da entrega automatizada. (DevOps/CD)"
         },
-        { 
-            image: imgA5, // 5 - AWS CodePipeline
-            caption: "Gerenciamento de Instâncias EC2: Máquinas virtuais que hospedam os nós de SysAdmin e Workstation que se comunicam com o EKS. (AWS/IaaS)" 
+        {
+          image: imgA5, // 5 - AWS CodePipeline
+          caption: "Gerenciamento de Instâncias EC2: Máquinas virtuais que hospedam os nós de SysAdmin e Workstation que se comunicam com o EKS. (AWS/IaaS)"
         },
-        { 
-            image: imgA6, // 6 - AWS EC2 Instances
-            caption: "Visão do DynamoDB (AWS): O banco de dados NoSQL para as tabelas transacionais críticas do e-commerce (Pedidos, Produtos). (AWS/Database)" 
+        {
+          image: imgA6, // 6 - AWS EC2 Instances
+          caption: "Visão do DynamoDB (AWS): O banco de dados NoSQL para as tabelas transacionais críticas do e-commerce (Pedidos, Produtos). (AWS/Database)"
         },
-        { 
-            image: imgA7, // 7 - AWS DynamoDB
-            caption: "Função Serverless AWS Lambda: Diagrama de ETL (Extract, Transform, Load) que orquestra a movimentação de dados entre DynamoDB (AWS) e BigQuery (GCP). (Multicloud/Serverless)" 
+        {
+          image: imgA7, // 7 - AWS DynamoDB
+          caption: "Função Serverless AWS Lambda: Diagrama de ETL (Extract, Transform, Load) que orquestra a movimentação de dados entre DynamoDB (AWS) e BigQuery (GCP). (Multicloud/Serverless)"
         },
-        { 
-            image: imgA8, // 8 - AWS Lambda ETL
-            caption: "Microsoft Azure: Confirmação de um Deployment (implantação) bem-sucedido. Um ativo visual essencial da arquitetura Multicloud. (Azure/Deployment)" 
+        {
+          image: imgA8, // 8 - AWS Lambda ETL
+          caption: "Microsoft Azure: Confirmação de um Deployment (implantação) bem-sucedido. Um ativo visual essencial da arquitetura Multicloud. (Azure/Deployment)"
         },
-        { 
-            image: imgA9, // 9 - Azure Deployment Success
-            caption: "Gestão do Fluxo de Compras: Exibição da tela 'Your Cart' (*Carrinho de Compras*), um ponto crucial no User Flow. (E-commerce Core)" 
+        {
+          image: imgA9, // 9 - Azure Deployment Success
+          caption: "Gestão do Fluxo de Compras: Exibição da tela 'Your Cart' (*Carrinho de Compras*), um ponto crucial no User Flow. (E-commerce Core)"
         },
-        { 
-            image: imgA10, // 10 - My Orders Screen
-            caption: "Tela de Customer Support: Demonstração da interface de chat para interação e resolução de problemas, parte do Fullstack. (Front-end Core)"
+        {
+          image: imgA10, // 10 - My Orders Screen
+          caption: "Tela de Customer Support: Demonstração da interface de chat para interação e resolução de problemas, parte do Fullstack. (Front-end Core)"
         },
-        { 
-            image: imgA11, // 11 - Customer Support Chat
-            caption: "Módulo My Orders: Visão do fluxo de pedidos e seus status (Pending, Cancelled). Confirmação de funcionamento dos microsserviços transacionais. (User Flow)" 
+        {
+          image: imgA11, // 11 - Customer Support Chat
+          caption: "Módulo My Orders: Visão do fluxo de pedidos e seus status (Pending, Cancelled). Confirmação de funcionamento dos microsserviços transacionais. (User Flow)"
         },
-        { 
-            image: imgA12, // 12 - Support Tickets + Sentiment
-            caption: "Análise de Tickets de Suporte: Tabela exibindo a classificação de Sentimento (Positive, Neutral, Negative) dos clientes, utilizando serviços de IA. (Inteligência Artificial/MLOps)" 
+        {
+          image: imgA12, // 12 - Support Tickets + Sentiment
+          caption: "Análise de Tickets de Suporte: Tabela exibindo a classificação de Sentimento (Positive, Neutral, Negative) dos clientes, utilizando serviços de IA. (Inteligência Artificial/MLOps)"
         },
-    ]
+      ]
     },
     {
       title: "Dental Management System",
@@ -169,7 +169,7 @@ const PortfolioSection = ({ openChat }) => {
       title: "Blog A Voz Do Exu",
       description: "Desenvolvimento e manutenção de blog imersivo para portal de notícias sobre cultura e religião, com foco em SEO e performance.",
       image: imgAvozdoexu,
-    tags: ["WordPress", "Elementor", "HTML", "CSS", "Canva", "Leonardo AI"],
+      tags: ["WordPress", "Elementor", "HTML", "CSS", "Canva", "Leonardo AI"],
       links: [{ label: "Ver Blog", url: "https://avozdoexu.lovestoblog.com/", icon: BookOpen }],
       gradient: "from-gray-700 to-gray-900",
       problem: "O portal precisava de uma plataforma de conteúdo que fosse visualmente atraente e imersiva, criando um ambiente temático para os visitantes. Neste projeto, criei um blog completo utilizando WordPress e Elementor, e criei uma landing page personalizada para gerar vendas",
@@ -242,7 +242,7 @@ const PortfolioSection = ({ openChat }) => {
     {
       title: "Portfólio Profissional (Esta Página)",
       description: "Desenvolvimento de uma Single-Page Application (SPA) com React e Vite para servir como um hub central de apresentação profissional, com foco em design moderno e experiência de usuário.",
-      image: imgPortfolioPreview, 
+      image: imgPortfolioPreview,
       tags: ["React", "Vite", "Tailwind CSS", "Headless UI", "Framer Motion", "CI/CD", "Clarity", "GA4"],
       links: [
         { label: "Ver Código no GitHub", url: "https://github.com/manuelportelaneto/meu-portfolio-profissional", icon: Github }
@@ -254,11 +254,11 @@ const PortfolioSection = ({ openChat }) => {
     {
       title: "Manuel (bot) - Assistente Virtual com IA",
       description: "Implementação de um Agente de IA com arquitetura baseada em RAG. Criação de um backend serverless em Node.js, assistente de IA conversacional (desta página) e integração com APIs.",
-      image: imgManuelBotPreview, 
+      image: imgManuelBotPreview,
       tags: ["Node.js", "Express", "OpenAI Assistants API", "Serverless", "Render.com", "Engenharia de Prompt"],
       links: [
         { label: "Ver Código no GitHub", url: "https://github.com/manuelportelaneto/manuel-bot-backend", icon: Github },
-        { label: "Interagir com o Bot", url: "#", icon: MessageCircle }  
+        { label: "Interagir com o Bot", url: "#", icon: MessageCircle }
       ],
       gradient: "from-purple-500 to-indigo-500",
       problem: "Transformar um portfólio estático em uma experiência interativa e 'viva', capaz de responder perguntas dos visitantes 24/7, qualificar leads (recrutadores/clientes) e demonstrar minhas habilidades de IA na prática.",
@@ -277,9 +277,9 @@ const PortfolioSection = ({ openChat }) => {
       problem: "A necessidade de garantir privacidade e segurança na navegação em redes Wi-Fi públicas e contornar restrições geográficas, evitando a dependência e os logs de serviços de VPN comerciais.",
       skillsUsed: "Provisionamento de IaaS na GCP (Compute Engine), configuração avançada de Firewall Rules para liberar portas UDP, administração de sistemas Linux (Ubuntu) via SSH, e a implementação completa de um servidor WireGuard para criar um túnel de comunicação criptografado e seguro.",
       galleryImages: [
-        { 
+        {
           image: imgVpnGcp, // Use a mesma variável de importação do diagrama aqui
-          caption: "Diagrama de arquitetura da solução de VPN privada no Google Cloud Platform, ilustrando o fluxo de tráfego seguro através do túnel WireGuard." 
+          caption: "Diagrama de arquitetura da solução de VPN privada no Google Cloud Platform, ilustrando o fluxo de tráfego seguro através do túnel WireGuard."
         }
       ]
     },
@@ -328,7 +328,7 @@ const PortfolioSection = ({ openChat }) => {
                 {link.label}
               </button>
             );
-          } 
+          }
           else if (link.isGalleryButton) {
             return (
               <button
@@ -341,7 +341,7 @@ const PortfolioSection = ({ openChat }) => {
               </button>
             );
           }
-          
+
           return (
             <a
               key={linkIndex}

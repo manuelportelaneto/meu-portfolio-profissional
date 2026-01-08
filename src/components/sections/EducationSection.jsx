@@ -1,4 +1,3 @@
-import React from 'react'
 import { Award, GraduationCap, BookOpen, Star } from 'lucide-react'
 
 const EducationSection = () => {
@@ -129,11 +128,10 @@ const EducationSection = () => {
                       <span className="text-gray-300 text-sm">
                         {edu.period}
                       </span>
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        edu.status === 'Cursando' 
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${edu.status === 'Cursando'
                           ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
                           : 'bg-green-500/20 text-green-400 border border-green-500/30'
-                      }`}>
+                        }`}>
                         {edu.status}
                       </span>
                     </div>

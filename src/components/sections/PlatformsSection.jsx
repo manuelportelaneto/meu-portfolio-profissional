@@ -1,4 +1,3 @@
-import React from 'react'
 import { ExternalLink, Linkedin, Github, Globe, Youtube, Briefcase } from 'lucide-react'
 
 const PlatformsSection = () => {
@@ -12,7 +11,7 @@ const PlatformsSection = () => {
       stats: "200+ Conexões"
     },
     {
-      title: "GitHub", 
+      title: "GitHub",
       description: "Explore meu código-fonte e contribuições.",
       url: "https://github.com/manuelportelaneto",
       icon: Github,
@@ -36,12 +35,12 @@ const PlatformsSection = () => {
       stats: "Google Developer"
     },
     //{
-      //title: "Cloud Matrix",
-      //description: "Conheça minha empresa de desenvolvimento.",
-      //url: "https://cloudmatrix.com.br/",
-      //icon: Globe,
-      //gradient: "from-purple-600 to-purple-500",
-      //stats: "Empresa Própria"
+    //title: "Cloud Matrix",
+    //description: "Conheça minha empresa de desenvolvimento.",
+    //url: "https://cloudmatrix.com.br/",
+    //icon: Globe,
+    //gradient: "from-purple-600 to-purple-500",
+    //stats: "Empresa Própria"
     //},
     {
       title: "YouTube",
@@ -53,7 +52,7 @@ const PlatformsSection = () => {
     }
   ]
 
-  const PlatformCard = ({ platform, index }) => {
+  const PlatformCard = ({ platform }) => {
     const IconComponent = platform.icon
 
     return (
@@ -121,16 +120,16 @@ const PlatformsSection = () => {
 
             {/* Quick Links */}
             <div className="flex flex-wrap justify-center gap-4">
-              <a 
+              <a
                 href="https://www.linkedin.com/in/manuelportelaneto/"
                 target="_blank"
-                rel="noopener noreferrer" 
+                rel="noopener noreferrer"
                 className="btn-secondary text-sm"
               >
                 <Linkedin className="w-4 h-4" />
                 LinkedIn
               </a>
-              <a 
+              <a
                 href="https://github.com/manuelportelaneto"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -139,7 +138,7 @@ const PlatformsSection = () => {
                 <Github className="w-4 h-4" />
                 GitHub
               </a>
-              <a 
+              <a
                 href="https://www.upwork.com/freelancers/~01ccf5e1820f05697e"
                 target="_blank"
                 rel="noopener noreferrer"
