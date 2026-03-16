@@ -12,13 +12,13 @@ import ContactSection from './components/sections/ContactSection';
 import SafeCookieConsent from './components/SafeCookieConsent';
 import PrivacyModal from './components/PrivacyModal';
 import Footer from './components/Footer';
-import Chatbot from './components/Chatbot';
+// import Chatbot from './components/Chatbot';
 
 const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
 function App() {
   const [isPrivacyModalOpen, setPrivacyModalOpen] = useState(false);
-  const [isChatOpen, setChatOpen] = useState(false);
+  // const [isChatOpen, setChatOpen] = useState(false);
 
   useEffect(() => {
     if (MEASUREMENT_ID && MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
@@ -40,7 +40,7 @@ function App() {
         <HeroSection />
         <AboutSection />
         <SkillsSection />
-        <PortfolioSection openChat={() => setChatOpen(true)} />
+        <PortfolioSection />
         <EducationSection />
         <LanguagesSection />
         <PlatformsSection />
@@ -68,7 +68,7 @@ function App() {
           Saiba mais.
         </button>
       </SafeCookieConsent>
-      <Chatbot isOpen={isChatOpen} setIsOpen={setChatOpen} />
+      {/* <Chatbot isOpen={isChatOpen} setIsOpen={setChatOpen} /> */}
     </div>
   )
 }
