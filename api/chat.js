@@ -4,7 +4,6 @@ import fs from 'fs';
 import path from 'path';
 import process from 'process';
 
-// Configura a API do Gemini.
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 export default async function handler(request, response) {
@@ -13,39 +12,44 @@ export default async function handler(request, response) {
     }
 
     try {
-        const { history = [], question, threadId } = request.body;
+        const { history = [], question } = request.body;
 
         if (!question) {
             return response.status(400).json({ error: 'A propriedade "question" é obrigatória.' });
         }
 
-        // Lê a base de conhecimento localmente
         const knowledgeBasePath = path.join(process.cwd(), 'knowledge_base.txt');
         const systemPrompt = fs.readFileSync(knowledgeBasePath, 'utf8');
 
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
-        // Constrói o histórico para o chat
-        const chatHistory = [
-            { role: "user", parts: [{ text: systemPrompt }] },
-            { role: "model", parts: [{ text: "Entendido. Estou pronto para ajudar com base nessas informações." }] },
-            ...history,
-        ];
+        // Configuração do modelo com instruções do sistema
+        const model = genAI.getGenerativeModel({ 
+            model: "gemini-1.5-flash", // Usando flash para melhor desempenho/custo
+            systemInstruction: systemPrompt 
+        });
 
         const chat = model.startChat({
-            history: chatHistory,
+            history: history,
+            generationConfig: {
+                maxOutputTokens: 500,
+                temperature: 0.7,
+            },
         });
 
         const result = await chat.sendMessage(question);
         const botResponse = result.response.text();
 
-        // Atualiza o histórico para devolver ao cliente (opcional, dependendo de como o front gerencia)
-        const newHistory = [...history, { role: "user", parts: [{ text: question }] }, { role: "model", parts: [{ text: botResponse }] }];
-
-        return response.status(200).json({ answer: botResponse, history: newHistory, threadId });
+        return response.status(200).json({ 
+            answer: botResponse,
+            // Retornamos o histórico atualizado para o front manter o estado
+            history: [
+                ...history, 
+                { role: "user", parts: [{ text: question }] }, 
+                { role: "model", parts: [{ text: botResponse }] }
+            ] 
+        });
 
     } catch (error) {
-        console.error('Erro no backend:', error);
-        return response.status(500).json({ error: 'Falha ao se comunicar com a IA.' });
+        console.error('Erro no backend do Manuel Bot:', error);
+        return response.status(500).json({ error: 'Falha ao processar sua pergunta. Tente novamente em instantes.' });
     }
 }

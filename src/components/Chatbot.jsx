@@ -1,13 +1,13 @@
 // src/components/Chatbot.jsx
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send } from 'lucide-react';
+import { MessageCircle, X, Send, Bot, User } from 'lucide-react';
 
 const Chatbot = ({ isOpen, setIsOpen }) => {
   const [messages, setMessages] = useState([]);
+  const [chatHistory, setChatHistory] = useState([]); // Histórico no formato da API Gemini
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [threadId, setThreadId] = useState(null);
   const messagesEndRef = useRef(null);
 
   // Efeito para rolar para a última mensagem
@@ -17,11 +17,11 @@ const Chatbot = ({ isOpen, setIsOpen }) => {
     }
   }, [messages, isLoading, isOpen]);
 
-  // CORREÇÃO: Remove a lógica de "startConversation". Apenas limpa o estado ao fechar.
+  // Limpa o chat ao fechar (opcional, mas mantém o estado limpo como estava)
   useEffect(() => {
     if (!isOpen) {
       setMessages([]);
-      setThreadId(null);
+      setChatHistory([]);
     }
   }, [isOpen]);
 
@@ -29,29 +29,37 @@ const Chatbot = ({ isOpen, setIsOpen }) => {
     e.preventDefault();
     if (!inputValue.trim() || isLoading) return;
 
-    const userMessage = { role: 'user', content: [{ type: 'text', text: { value: inputValue } }] };
+    const currentInput = inputValue.trim();
+    // Mensagem local para exibição imediata
+    const userMessage = { role: 'user', content: currentInput };
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsLoading(true);
 
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || '/api/chat';
+      const apiUrl = '/api/chat';
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: inputValue, threadId: threadId }),
+        body: JSON.stringify({ 
+          question: currentInput, 
+          history: chatHistory 
+        }),
       });
 
       const data = await response.json();
       if (data.error) throw new Error(data.error);
 
-      const botMessage = { role: 'assistant', content: [{ type: 'text', text: { value: data.answer } }] };
+      const botMessage = { role: 'assistant', content: data.answer };
       setMessages(prev => [...prev, botMessage]);
-      setThreadId(data.threadId); // Armazena o threadId para a próxima mensagem.
+      setChatHistory(data.history);
 
     } catch (error) {
       console.error('Error fetching chat response:', error);
-      const errorMessage = { role: 'assistant', content: [{ type: 'text', text: { value: 'Desculpe, não consegui me conectar. Tente novamente.' } }] };
+      const errorMessage = { 
+        role: 'assistant', 
+        content: 'Ops! Ocorreu um erro técnico. Pode tentar perguntar novamente?' 
+      };
       setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
@@ -59,13 +67,6 @@ const Chatbot = ({ isOpen, setIsOpen }) => {
   };
 
   const toggleChat = () => setIsOpen(prev => !prev);
-
-  const renderMessageContent = (msg) => {
-    if (msg.content && msg.content[0]?.type === 'text') {
-      return msg.content[0].text.value.replace(/\n/g, '<br />');
-    }
-    return '';
-  };
 
   return (
     <>
@@ -77,55 +78,96 @@ const Chatbot = ({ isOpen, setIsOpen }) => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 50, scale: 0.9 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="w-[calc(100vw-3rem)] max-w-sm h-[70vh] max-h-[600px] bg-gray-900/80 backdrop-blur-xl border border-gray-700 rounded-2xl shadow-2xl flex flex-col"
+              className="w-[calc(100vw-3rem)] max-w-sm h-[70vh] max-h-[600px] bg-gray-900/90 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl flex flex-col overflow-hidden"
             >
-              <div className="flex items-center justify-between p-4 border-b border-gray-700 flex-shrink-0">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full overflow-hidden">
-                    <img src="/favicon.ico" alt="Manuel (bot) avatar" className="w-full h-full" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-white">Manuel (bot)</h3>
-                    <p className="text-xs text-green-400">Online</p>
-                  </div>
-                </div>
-                <button onClick={toggleChat} className="p-2 rounded-full hover:bg-gray-700"><X size={20} /></button>
-              </div>
-
-              <div className="flex-1 p-4 overflow-y-auto">
-                <div className="space-y-4">
-                  {/* Mensagem de boas-vindas estática, que não depende de API */}
-                  {messages.length === 0 && !isLoading && (
-                    <div className="text-center text-xs text-gray-400 px-4 pt-4">
-                      Este é o Manuel (bot). Faça uma pergunta sobre minha carreira, projetos ou habilidades.
+              {/* Header com gradiente premium */}
+              <div className="bg-gradient-to-r from-primary-600/20 to-purple-600/20 p-4 border-b border-white/10 flex-shrink-0">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-primary-500/20 flex items-center justify-center border border-primary-500/30">
+                      <Bot className="text-primary-400" size={24} />
                     </div>
-                  )}
-                  {messages.map((msg, index) => (
-                    <div key={index} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                      <div className={`max-w-xs md:max-w-sm px-4 py-2 rounded-2xl ${msg.role === 'user' ? 'bg-primary-600 text-white rounded-br-none' : 'bg-gray-700 text-gray-200 rounded-bl-none'}`}>
-                        <p className="text-sm" dangerouslySetInnerHTML={{ __html: renderMessageContent(msg) }} />
+                    <div>
+                      <h3 className="font-bold text-white text-sm">Manuel Bot</h3>
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <p className="text-[10px] text-gray-400 uppercase tracking-wider font-medium">Sempre pronto</p>
                       </div>
                     </div>
-                  ))}
-                  {isLoading && (
-                    <div className="flex justify-start">
-                      <div className="px-4 py-2 rounded-2xl bg-gray-700 text-gray-200 rounded-bl-none">
-                        <div className="flex items-center gap-2">
-                          <span className="h-2 w-2 bg-primary-400 rounded-full animate-bounce delay-0"></span>
-                          <span className="h-2 w-2 bg-primary-400 rounded-full animate-bounce delay-150"></span>
-                          <span className="h-2 w-2 bg-primary-400 rounded-full animate-bounce delay-300"></span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                  <div ref={messagesEndRef} />
+                  </div>
+                  <button onClick={toggleChat} className="p-2 rounded-xl hover:bg-white/5 transition-colors group">
+                    <X size={18} className="text-gray-400 group-hover:text-white" />
+                  </button>
                 </div>
               </div>
 
-              <form onSubmit={handleSendMessage} className="p-4 border-t border-gray-700 flex-shrink-0">
-                <div className="flex items-center gap-2">
-                  <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder="Digite sua mensagem..." disabled={isLoading} className="flex-1 bg-gray-800 border border-gray-600 rounded-full py-2 px-4 focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm disabled:opacity-50" />
-                  <button type="submit" disabled={isLoading} className="p-3 bg-primary-600 rounded-full hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+              {/* Área de Mensagens */}
+              <div className="flex-1 p-4 overflow-y-auto space-y-4 scrollbar-thin scrollbar-thumb-white/10">
+                {messages.length === 0 && !isLoading && (
+                  <div className="text-center py-8 px-6">
+                    <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
+                      <p className="text-xs text-gray-400 leading-relaxed">
+                        Olá! Sou o assistente do Manuel. Pergunte-me sobre sua carreira, projetos ou tecnologias que ele domina.
+                      </p>
+                    </div>
+                  </div>
+                )}
+                
+                {messages.map((msg, index) => (
+                  <motion.div 
+                    key={index}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} gap-2`}
+                  >
+                    {msg.role !== 'user' && (
+                      <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 border border-white/10">
+                        <Bot size={14} className="text-primary-400" />
+                      </div>
+                    )}
+                    <div className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm ${
+                      msg.role === 'user' 
+                        ? 'bg-primary-600 text-white rounded-tr-none' 
+                        : 'bg-white/5 text-gray-200 border border-white/10 rounded-tl-none'
+                    }`}>
+                      <p className="whitespace-pre-wrap">{msg.content}</p>
+                    </div>
+                  </motion.div>
+                ))}
+                
+                {isLoading && (
+                  <div className="flex justify-start gap-2">
+                    <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 border border-white/10">
+                      <Bot size={14} className="text-primary-400" />
+                    </div>
+                    <div className="px-4 py-3 rounded-2xl bg-white/5 border border-white/10 rounded-tl-none">
+                      <div className="flex items-center gap-1.5">
+                        <span className="h-1.5 w-1.5 bg-primary-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                        <span className="h-1.5 w-1.5 bg-primary-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                        <span className="h-1.5 w-1.5 bg-primary-400 rounded-full animate-bounce"></span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <div ref={messagesEndRef} />
+              </div>
+
+              {/* Input de Mensagem */}
+              <form onSubmit={handleSendMessage} className="p-4 bg-gray-900/50 border-t border-white/10">
+                <div className="relative flex items-center gap-2">
+                  <input 
+                    type="text" 
+                    value={inputValue} 
+                    onChange={(e) => setInputValue(e.target.value)} 
+                    placeholder="Pergunte algo..." 
+                    disabled={isLoading} 
+                    className="flex-1 bg-white/5 border border-white/10 rounded-2xl py-3 px-4 pr-12 focus:outline-none focus:ring-2 focus:ring-primary-500/50 text-sm text-white placeholder:text-gray-500 transition-all disabled:opacity-50" 
+                  />
+                  <button 
+                    type="submit" 
+                    disabled={isLoading || !inputValue.trim()} 
+                    className="absolute right-1.5 p-2 bg-primary-600 rounded-xl hover:bg-primary-500 transition-all disabled:opacity-50 disabled:grayscale"
+                  >
                     <Send size={18} className="text-white" />
                   </button>
                 </div>
@@ -134,8 +176,15 @@ const Chatbot = ({ isOpen, setIsOpen }) => {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Botão Flutuante */}
       <div className="fixed bottom-6 right-6 z-50">
-        <motion.button onClick={toggleChat} className="w-16 h-16 bg-gradient-to-r from-primary-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg text-white" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+        <motion.button 
+          onClick={toggleChat} 
+          className="w-16 h-16 bg-gradient-to-br from-primary-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl text-white border border-white/20"
+          whileHover={{ scale: 1.05, rotate: 5 }} 
+          whileTap={{ scale: 0.95 }}
+        >
           {isOpen ? <X size={28} /> : <MessageCircle size={28} />}
         </motion.button>
       </div>
