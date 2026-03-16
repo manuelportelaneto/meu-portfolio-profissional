@@ -1,4 +1,4 @@
-// api/chat.js - Final Deployment Trigger: 2026-03-16 18:48
+// api/chat.js - Switching to Gemini 1.5 Flash (Primary)
 export async function onRequest(context) {
   const { request, env } = context;
 
@@ -38,36 +38,34 @@ export async function onRequest(context) {
     
     Sempre envie o link do LinkedIn (https://www.linkedin.com/in/manuelportelaneto/) se quiserem saber mais detalhes.`;
 
-    const messages = [
-      { role: "system", content: systemPrompt },
-      ...history.map(h => ({
-        role: h.role === "model" ? "assistant" : "user",
-        content: h.parts[0].text
-      })),
-      { role: "user", content: question }
-    ];
-
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    // Chamada direta para a API do Gemini via REST (melhor para Cloudflare Edge)
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${env.GEMINI_API_KEY}`;
+    
+    const response = await fetch(geminiUrl, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${env.OPENAI_API_KEY}`
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: "gpt-4o-mini", 
-        messages: messages,
-        max_tokens: 500,
-        temperature: 0.7
+        contents: [
+          { role: "user", parts: [{ text: systemPrompt }] },
+          { role: "model", parts: [{ text: "Entendido. Serei o Manuel Bot e seguirei suas instruções rigorosamente." }] },
+          ...history,
+          { role: "user", parts: [{ text: question }] }
+        ],
+        generationConfig: {
+          maxOutputTokens: 500,
+          temperature: 0.7
+        }
       })
     });
 
     const data = await response.json();
+    
     if (!response.ok) {
-      const errorMsg = data.error?.message || 'Erro desconhecido na OpenAI';
-      throw new Error(`OpenAI Error (${response.status}): ${errorMsg}`);
+      const errorMsg = data.error?.message || 'Erro desconhecido no Gemini';
+      throw new Error(`Gemini Error (${response.status}): ${errorMsg}`);
     }
 
-    const botResponse = data.choices[0].message.content;
+    const botResponse = data.candidates[0].content.parts[0].text;
 
     return new Response(JSON.stringify({ 
       answer: botResponse,
@@ -82,14 +80,13 @@ export async function onRequest(context) {
     });
 
   } catch (error) {
-    console.error('Erro no Cloudflare Function (OpenAI):', error);
+    console.error('Erro no Cloudflare Function (Gemini):', error);
     return new Response(JSON.stringify({ 
       error: error.message,
-      tip: 'Verifique se a OPENAI_API_KEY está configurada corretamente no painel da Cloudflare (Settings > Functions > Environment variables).'
+      tip: 'Verifique se a GEMINI_API_KEY está configurada corretamente no painel da Cloudflare.'
     }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
   }
 }
-
