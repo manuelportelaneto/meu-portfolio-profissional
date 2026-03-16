@@ -39,7 +39,8 @@ export async function onRequest(context) {
     Sempre envie o link do LinkedIn (https://www.linkedin.com/in/manuelportelaneto/) se quiserem saber mais detalhes.`;
 
     // Chamada direta para a API do Gemini via REST (melhor para Cloudflare Edge)
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${env.GEMINI_API_KEY}`;
+    // Atualizado para v1 conforme erro 404 no v1beta
+    const geminiUrl = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${env.GEMINI_API_KEY}`;
     
     const response = await fetch(geminiUrl, {
       method: 'POST',
