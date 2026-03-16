@@ -1,3 +1,4 @@
+// api/chat.js - Deployment Trigger: Internal Server Error Fix
 export async function onRequest(context) {
   const { request, env } = context;
 
