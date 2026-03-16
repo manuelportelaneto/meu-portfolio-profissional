@@ -62,7 +62,10 @@ export async function onRequest(context) {
     });
 
     const data = await response.json();
-    if (data.error) throw new Error(data.error.message);
+    if (!response.ok) {
+      const errorMsg = data.error?.message || 'Erro desconhecido na OpenAI';
+      throw new Error(`OpenAI Error (${response.status}): ${errorMsg}`);
+    }
 
     const botResponse = data.choices[0].message.content;
 
@@ -80,9 +83,13 @@ export async function onRequest(context) {
 
   } catch (error) {
     console.error('Erro no Cloudflare Function (OpenAI):', error);
-    return new Response(JSON.stringify({ error: 'Erro interno na comunicação com a OpenAI. Verifique se a OPENAI_API_KEY está configurada no painel da Cloudflare.' }), {
+    return new Response(JSON.stringify({ 
+      error: error.message,
+      tip: 'Verifique se a OPENAI_API_KEY está configurada corretamente no painel da Cloudflare (Settings > Functions > Environment variables).'
+    }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
   }
 }
+
