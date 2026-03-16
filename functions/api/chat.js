@@ -1,4 +1,4 @@
-// api/chat.js - Deployment Trigger: Internal Server Error Fix
+// api/chat.js - Final Deployment Trigger: 2026-03-16 18:48
 export async function onRequest(context) {
   const { request, env } = context;
 
