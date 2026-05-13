@@ -31,6 +31,9 @@ import imgTerraformAws from '../../assets/projects/digitalnexus/terraform-aws.pn
 import imgTerraformGcp from '../../assets/projects/digitalnexus/terraform-gcp.png';
 import imgDynamoDB from '../../assets/projects/digitalnexus/dynamodb-data.png';
 import imgApiReaderCode from '../../assets/projects/digitalnexus/api-reader-code.png';
+import imgFabricaVideosArq from '../../assets/projects/fabrica-videos-arquitetura.png';
+import imgFabricaCortesCapa from '../../assets/projects/fabrica-cortes-capa.png';
+import imgFabricaCortesArq from '../../assets/projects/fabrica-cortes-arquitetura.png';
 
 const PortfolioSection = ({ openChat }) => {
   // Estado para controlar a visibilidade do modal e o projeto selecionado
@@ -62,6 +65,48 @@ const PortfolioSection = ({ openChat }) => {
   };
 
   const projects = [
+    {
+      title: "Matrix Factory (Fábrica de Vídeos)",
+      description: "Ecossistema industrial de produção de vídeo automatizada, integrando IA generativa e orquestração de mídia de alta fidelidade.",
+      image: imgFabricaVideosArq,
+      tags: ["FastAPI", "Next.js 15", "FFmpeg", "Google Cloud TTS", "Python", "IA Multimodal", "Automation"],
+      links: [
+        { label: "Ver Arquitetura", icon: Layers, isGalleryButton: true }
+      ],
+      gradient: "from-green-600 to-emerald-900",
+      featured: true,
+      problem: "A produção de vídeos cinematográficos e documentários exige dezenas de horas de edição, busca de ativos e sincronização de áudio, tornando o custo e o tempo de produção proibitivos para criadores individuais.",
+      skillsUsed: "Desenvolvimento de motores especializados (Audio, Video, Downloader) em Python/FFmpeg, interface de direção em Next.js 15, implementação de sidechain ducking inteligente e sistemas de fallback autônomos para garantir 100% de tempo de atividade na renderização.",
+      galleryImages: [
+        { 
+          image: imgFabricaVideosArq, 
+          caption: "Diagrama de Arquitetura: Orquestração modular entre FastAPI, motores de IA (TTS/Scraping) e o Renderizador Master em FFmpeg." 
+        }
+      ]
+    },
+    {
+      title: "Shorts Factory (Fábrica de Cortes)",
+      description: "Motor de viralização automatizada v7.3, transformando vídeos longos em clipes curtos de alta retenção com SEO industrial.",
+      image: imgFabricaCortesCapa,
+      tags: ["Gemini 1.5 Pro", "Claude 3.5 Haiku", "Groq", "Whisper", "FFmpeg", "Streamlit", "Python"],
+      links: [
+        { label: "Ver Galeria", icon: Layers, isGalleryButton: true }
+      ],
+      gradient: "from-orange-600 to-red-800",
+      featured: true,
+      problem: "Identificar manualmente os momentos 'virais' em vídeos longos é um processo lento e subjetivo. Além disso, a edição vertical (9:16) com legendas dinâmicas exige precisão milimétrica.",
+      skillsUsed: "Utilização de IA Multimodal (Gemini) para detecção de ganchos (hooks), Claude para copywriting de SEO, e Groq/Whisper para transcrição em tempo real. Implementação de filtros de estética viral e sistemas anti-reused content para maximizar o alcance orgânico.",
+      galleryImages: [
+        { 
+          image: imgFabricaCortesCapa, 
+          caption: "Interface de Produção: Dashboard v7.5 para monitoramento de esteira de produção e agendamento inteligente de postagens." 
+        },
+        { 
+          image: imgFabricaCortesArq, 
+          caption: "Master Tech-Stack: Arquitetura industrial dividida em Ingestão, Inteligência, Transformação e Distribuição Final." 
+        }
+      ]
+    },
     {
       title: "CloudMart - E-commerce com IA e Multicloud",
       description: "E-commerce totalmente funcional (Fullstack, IA e DevOps) demonstrando a implementação de microsserviços em arquitetura Multicloud (AWS, Azure, GCP).",
