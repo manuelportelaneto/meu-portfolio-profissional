@@ -15,6 +15,9 @@ const ProjectGalleryModal = ({ isOpen, onClose, project }) => {
         return null;
     }
 
+    // Solução robusta: garante o slide correto ou retrocede para o primeiro se o index estiver temporariamente fora dos limites
+    const currentImage = project.galleryImages[currentSlide] || project.galleryImages[0];
+
     const nextSlide = () => {
         setCurrentSlide((prev) => (prev + 1) % project.galleryImages.length);
     };
@@ -44,8 +47,8 @@ const ProjectGalleryModal = ({ isOpen, onClose, project }) => {
                 <div className="relative flex items-center justify-center p-6 sm:p-10 w-full">
                     {/* Imagem */}
                     <img
-                        src={project.galleryImages[currentSlide].image}
-                        alt={project.galleryImages[currentSlide].caption || 'Project Screenshot'}
+                        src={currentImage.image}
+                        alt={currentImage.caption || 'Project Screenshot'}
                         className="w-full max-h-[80vh] object-contain rounded-lg shadow-lg"
                     />
 
@@ -71,9 +74,9 @@ const ProjectGalleryModal = ({ isOpen, onClose, project }) => {
                 </div>
 
                 {/* Legenda/Rodapé (Caption/Footer) */}
-                {project.galleryImages[currentSlide].caption && (
+                {currentImage.caption && (
                     <div className="px-6 py-4 bg-gray-900 border-t border-gray-700">
-                        <p className="text-sm text-gray-300 text-center">{project.galleryImages[currentSlide].caption}</p>
+                        <p className="text-sm text-gray-300 text-center">{currentImage.caption}</p>
                     </div>
                 )}
             </div>
