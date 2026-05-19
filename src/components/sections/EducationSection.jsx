@@ -48,7 +48,7 @@ const EducationSection = () => {
       title: "Curso Técnico Integrado",
       subtitle: "Desenvolvedor Full-Stack",
       institution: "Mimo",
-      status: "Cursando",
+      status: "Concluído",
       period: "2024 - 2025",
       type: "technical"
     }

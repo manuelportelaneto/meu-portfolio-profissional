@@ -27,7 +27,7 @@ const AboutSection = () => {
                 </p>
 
                 <p className="text-xl">
-                  Hoje, como Arquiteto de Soluções, aplico essa mentalidade analítica e pragmática para projetar e construir sistemas de ponta a ponta. Minha especialidade é o ecossistema moderno: <span className="text-primary-400 font-medium">IA Generativa (OpenAI, Gemini, Claude, RAG, MCP), Automação de Processos (n8n)</span> e a infraestrutura <span className="text-primary-400 font-medium">Multicloud (AWS, Azure, GCP, OCI)</span> que os sustenta.
+                  Hoje, como Arquiteto de Soluções, aplico essa mentalidade analítica e pragmática para projetar e construir sistemas de ponta a ponta. Minha especialidade é o ecossistema moderno: <span className="text-primary-400 font-medium">IA Generativa (OpenAI, Gemini, Claude, RAG, MCP), Automação de Processos (n8n)</span> e a infraestrutura <span className="text-primary-400 font-medium">Multicloud (AWS, Azure, GCP, OCI, Cloudflare)</span> que os sustenta.
                 </p>
 
                 <p className="text-xl">
@@ -37,7 +37,7 @@ const AboutSection = () => {
 
               {/* Experience Highlights */}
               <div className="mt-12 grid md:grid-cols-3 gap-6">
-                <div className="text-center p-6 bg-gray-900 rounded-xl border border-gray-800"><Cloud className="w-8 h-8 text-primary-500 mx-auto mb-3" /><h3 className="text-2xl font-bold text-white mb-2">4</h3><p className="text-gray-400">Nuvens (AWS, Azure, GCP, OCI)</p></div>
+                <div className="text-center p-6 bg-gray-900 rounded-xl border border-gray-800"><Cloud className="w-8 h-8 text-primary-500 mx-auto mb-3" /><h3 className="text-2xl font-bold text-white mb-2">5</h3><p className="text-gray-400">Nuvens (AWS, Azure, GCP, OCI, Cloudflare)</p></div>
                 <div className="text-center p-6 bg-gray-900 rounded-xl border border-gray-800"><BrainCircuit className="w-8 h-8 text-primary-500 mx-auto mb-3" /><h3 className="text-2xl font-bold text-white mb-2">10+</h3><p className="text-gray-400">Projetos com IA</p></div>
                 <div className="text-center p-6 bg-gray-900 rounded-xl border border-gray-800"><Lightbulb className="w-8 h-8 text-primary-500 mx-auto mb-3" /><h3 className="text-2xl font-bold text-white mb-2">24/7</h3><p className="text-gray-400">Aprendizado Contínuo</p></div>
               </div>
