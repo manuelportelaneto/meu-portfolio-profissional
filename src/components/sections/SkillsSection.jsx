@@ -79,7 +79,7 @@ const SkillsSection = () => {
         "Visualização"
       ],
       gradient: "from-orange-500 to-red-500",
-      proficiency: "Básico" // Nível ajustado
+      proficiency: "Intermediário" // Nível ajustado
     }
   ]
 
