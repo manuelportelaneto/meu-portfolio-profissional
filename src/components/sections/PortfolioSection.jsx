@@ -34,6 +34,8 @@ import imgApiReaderCode from '../../assets/projects/digitalnexus/api-reader-code
 import imgFabricaVideosArq from '../../assets/projects/fabrica-videos-arquitetura.png';
 import imgFabricaCortesCapa from '../../assets/projects/fabrica-cortes-capa.png';
 import imgFabricaCortesArq from '../../assets/projects/fabrica-cortes-arquitetura.png';
+import imgCloudMatrixHubDesktop from '../../assets/projects/cloudmatrix-hub-desktop.png';
+import imgCloudMatrixHubMobile from '../../assets/projects/cloudmatrix-hub-mobile.png';
 
 const PortfolioSection = ({ openChat }) => {
   // Estado para controlar a visibilidade do modal e o projeto selecionado
@@ -65,6 +67,29 @@ const PortfolioSection = ({ openChat }) => {
   };
 
   const projects = [
+    {
+      title: "Cloud Matrix AI Hub (Privacidade & FinOps IA)",
+      description: "Gateway corporativo e suíte unificada para inferência e treinamento de LLMs híbridos (Groq LPU, BitNet 1-bit CPU e Ollama), garantindo 100% de privacidade dos dados internos e redução drástica de custos.",
+      image: imgCloudMatrixHubDesktop,
+      tags: ["FastAPI", "Python", "BitNet b1.58", "Groq LPU", "Ollama", "PWA", "Zero Trust", "Cloudflare Tunnel", "Privacy/LGPD", "FinOps IA"],
+      links: [
+        { label: "Ver Galeria", icon: Layers, isGalleryButton: true }
+      ],
+      gradient: "from-green-600 to-emerald-950",
+      featured: true,
+      problem: "Empresas enfrentam dilemas severos ao adotar IA generativa: custos proibitivos de assinaturas/APIs de terceiros e alto risco de vazamento de dados estratégicos e confidenciais ao enviar prompts para servidores externos (risco LGPD e perda de segredo industrial).",
+      skillsUsed: "Desenvolvimento de API Gateway assíncrono em FastAPI (OpenAI-compatible) com roteamento inteligente entre instâncias ultrarrápidas em Groq LPU e motores locais 1-bit (BitNet b1.58 / Ollama) na CPU sem necessidade de GPUs caras. Implementação de banco assíncrono SQLite, síntese de voz masculina equalizada (TTS), ditado contínuo (STT), Progressive Web App (PWA) e túnel Zero-Trust via Cloudflare Tunnel.",
+      galleryImages: [
+        { 
+          image: imgCloudMatrixHubDesktop, 
+          caption: "Console Corporativo (Desktop): Interface Matrix executando análise estratégica com garantia de isolamento local de dados (Air-Gapped) e integração via API compatível com OpenAI." 
+        },
+        { 
+          image: imgCloudMatrixHubMobile, 
+          caption: "Aplicativo Mobile (PWA Standalone): Interface responsiva instalada em smartphone com síntese de voz TTS grave, ditado STT e suporte a anexos multimodais." 
+        }
+      ]
+    },
     {
       title: "Matrix Factory (Fábrica de Vídeos)",
       description: "Ecossistema industrial de produção de vídeo automatizada, integrando IA generativa e orquestração de mídia de alta fidelidade.",
