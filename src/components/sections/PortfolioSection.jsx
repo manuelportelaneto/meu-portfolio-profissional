@@ -36,6 +36,12 @@ import imgFabricaCortesCapa from '../../assets/projects/fabrica-cortes-capa.png'
 import imgFabricaCortesArq from '../../assets/projects/fabrica-cortes-arquitetura.png';
 import imgCloudMatrixHubDesktop from '../../assets/projects/cloudmatrix-hub-desktop.png';
 import imgCloudMatrixHubMobile from '../../assets/projects/cloudmatrix-hub-mobile.png';
+// Importações Guardião Nacional
+import imgGuardiaoCapa from '../../assets/projects/guardiao-capa.jpg';
+import imgGuardiaoMapaPrincipal from '../../assets/projects/guardiao-mapa-principal.jpeg';
+import imgGuardiaoMapaClimatico from '../../assets/projects/guardiao-mapa-climatico.jpeg';
+import imgGuardiaoContribuicao from '../../assets/projects/guardiao-contribuicao.jpeg';
+import imgGuardiaoContribuicaoDetalhe from '../../assets/projects/guardiao-contribuicao-detalhe.jpeg';
 
 const PortfolioSection = ({ openChat }) => {
   // Estado para controlar a visibilidade do modal e o projeto selecionado
@@ -67,6 +73,43 @@ const PortfolioSection = ({ openChat }) => {
   };
 
   const projects = [
+    {
+      title: "Guardião Nacional - Plataforma Cívica de Alerta e Segurança Comunitária",
+      description: "Ecossistema mobile e web em tempo real para monitoramento colaborativo de riscos climáticos, desastres naturais, alertas de emergência geolocalizados e rotas seguras para abrigos em todo o território nacional.",
+      image: imgGuardiaoCapa,
+      tags: ["React Native", "Expo", "Firebase", "TypeScript", "OpenStreetMap", "Leaflet", "Real-Time GIS", "CPTEC/INMET", "Push Notifications", "Defesa Civil / Cívico"],
+      links: [
+        { label: "Acessar Site Oficial", url: "https://guardiaonacional.com", icon: ExternalLink },
+        { label: "Google Play Store", url: "https://play.google.com/store/apps/details?id=com.guardiaonacional.myapp", icon: ExternalLink },
+        { label: "Ver Galeria", icon: Layers, isGalleryButton: true }
+      ],
+      gradient: "from-blue-600 via-sky-700 to-slate-900",
+      featured: true,
+      problem: "No Brasil, eventos climáticos extremos e situações de emergência urbana afetam milhões de cidadãos que sofrem com a falta de informações georreferenciadas em tempo real sobre áreas de alagamento, deslizamentos, bloqueios viários e localização imediata de abrigos seguros homologados.",
+      skillsUsed: "Arquitetura e engenharia full-stack de ecossistema resiliente de missão crítica: aplicativo mobile (React Native/Expo com TypeScript) e portal web progressivo. Integração em tempo real com Firebase (Firestore, Cloud Functions, FCM e Storage), mapeamento geoespacial vetorial de alto desempenho (Leaflet / OpenStreetMap) com clustering dinâmico de ocorrências, ingestão de dados meteorológicos e radares em tempo real, fluxo colaborativo de reporte de incidentes com validação por reputação comunitária, cálculo de rotas de evacuação offline-first e rigoroso cumprimento de privacidade LGPD.",
+      galleryImages: [
+        { 
+          image: imgGuardiaoCapa, 
+          caption: "Capa Oficial & Identidade: Rede comunitária de proteção cívica conectando cidadãos e dados de risco em tempo real." 
+        },
+        { 
+          image: imgGuardiaoMapaPrincipal, 
+          caption: "Mapa Operacional em Tempo Real: Visualização geoespacial de alertas de risco, zonas de alagamento e rotas seguras para abrigos." 
+        },
+        { 
+          image: imgGuardiaoMapaClimatico, 
+          caption: "Radar Meteorológico & Clima: Camada climática interativa integrando precipitação, ventos e previsões de tempestades." 
+        },
+        { 
+          image: imgGuardiaoContribuicao, 
+          caption: "Reporte Colaborativo Comunitário: Interface ágil para cidadãos registrarem ocorrências locais com categorias padronizadas." 
+        },
+        { 
+          image: imgGuardiaoContribuicaoDetalhe, 
+          caption: "Evidências e Verificação: Sistema de anexo de mídias e geolocalização precisa para auditoria comunitária de incidentes." 
+        }
+      ]
+    },
     {
       title: "Cloud Matrix AI Hub (Privacidade & FinOps IA)",
       description: "Gateway corporativo e suíte unificada para inferência e treinamento de LLMs híbridos (Groq LPU, BitNet 1-bit CPU e Ollama), garantindo 100% de privacidade dos dados internos e redução drástica de custos.",
