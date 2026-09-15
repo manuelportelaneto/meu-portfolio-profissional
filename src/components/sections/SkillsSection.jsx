@@ -49,7 +49,7 @@ const SkillsSection = () => {
         "Scrum"
       ],
       gradient: "from-blue-500 to-cyan-500",
-      proficiency: "Intermediário" // Nível ajustado
+      proficiency: "Avançado"
     },
     {
       icon: Code,
