@@ -125,7 +125,6 @@ const PortfolioSection = ({ openChat }) => {
       tags: ["React 19", "TypeScript", "Vite", "Zustand", "TailwindCSS", "Google Drive API v3", "OAuth 2.0 GIS", "PWA Offline", "CRDT-Style Sync", "Firebase Hosting", "Firestore REST", "LGPD/GDPR", "Vitest (113 testes)"],
       links: [
         { label: "Acessar Aplicação", url: "https://linkhub.cloudmatrix.com.br", icon: ExternalLink },
-        { label: "Ver Código no GitHub", url: "https://github.com/manuelportelaneto/linkhub", icon: Github },
         { label: "Ver Galeria & Arquitetura", icon: Layers, isGalleryButton: true }
       ],
       gradient: "from-cyan-600 via-blue-700 to-indigo-950",
