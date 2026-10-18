@@ -80,44 +80,7 @@ const PortfolioSection = ({ openChat }) => {
   };
 
   const projects = [
-    {
-      title: "LinkHub Cloud - Soberania de Dados, Cartão de Visitas Digital & Central de Documentos",
-      description: "Plataforma PWA offline-first de alta performance para organização de links corporativos, cartões de visitas digitais (1200x630 PNG / vCard) e compartilhamento soberano de documentos salvos diretamente no Google Drive do usuário (sem intermediação de servidores proprietários e em conformidade estrita com a LGPD/GDPR).",
-      image: imgLinkhubCapa,
-      tags: ["React 19", "TypeScript", "Vite", "Zustand", "TailwindCSS", "Google Drive API v3", "OAuth 2.0 GIS", "PWA Offline", "CRDT-Style Sync", "Firebase Hosting", "Firestore REST", "LGPD/GDPR", "Vitest (113 testes)"],
-      links: [
-        { label: "Acessar Aplicação", url: "https://linkhub.cloudmatrix.com.br", icon: ExternalLink },
-        { label: "Ver Código no GitHub", url: "https://github.com/manuelportelaneto/linkhub", icon: Github },
-        { label: "Ver Galeria & Arquitetura", icon: Layers, isGalleryButton: true }
-      ],
-      gradient: "from-cyan-600 via-blue-700 to-indigo-950",
-      featured: true,
-      problem: "Gerenciadores de links tradicionais (como Linktree e agregadores SaaS) impõem dependência (lock-in), monetizam dados dos usuários através de rastreadores invasivos, perdem links por exclusões conflitantes, e exigem o envio de documentos confidenciais para servidores de terceiros vulneráveis. Além disso, profissionais e equipes corporativas enfrentam sobrecarga crônica de abas no navegador (tab overload) e ausência de uma ferramenta unificada para cartões digitais profissionais com vCard de alta fidelidade.",
-      skillsUsed: "Desenvolvimento full-stack de ponta a ponta: SPA reativa e PWA instalável com React 19, TypeScript, Vite, Zustand e TailwindCSS; integração avançada com Google Identity Services (OAuth 2.0) sob o princípio de menor privilégio (escopo estrito drive.file); arquitetura de Soberania Total onde todos os dados e arquivos corporativos são custodiados exclusivamente no Google Drive do usuário; motor de sincronização bidirecional offline estilo CRDT com tombstones para prevenção rigorosa de exclusões indevidas; Business Card Studio integrado capaz de gerar cartões de apresentação executivos em alta resolução (1200x630 PNG) com vCard (.vcf) e QR Code; distribuição na borda global com Firebase Hosting Edge CDN, Cloudflare DNS, HSTS Preload e cabeçalhos de blindagem de segurança; Perfil Público opcional desacoplado com Firestore REST e URLs curtas amigáveis (/p/:username); motor dinâmico de contraste WCAG 2.1; internacionalização em 4 idiomas (PT, EN, ES, FR) e suíte com mais de 113 testes automatizados em Vitest cobrindo sync, sanitização XSS e contraste.",
-      galleryImages: [
-        {
-          image: imgLinkhubCapa,
-          caption: "Capa Oficial & Preview Social: Plataforma soberana de links, documentos e cartão de visitas digital com identidade executiva moderna."
-        },
-        {
-          image: imgLinkhubArquitetura,
-          caption: "Diagrama de Arquitetura do Sistema: Fluxo integrado entre Cliente PWA (React 19 + Zustand), Borda Segura (Firebase Edge CDN), Google Identity OAuth e Cofre Soberano no Google Drive."
-        },
-        {
-          image: imgLinkhubCasosDeUso,
-          caption: "Infográfico de Casos de Uso Diários: Fim da sobrecarga de abas de trabalho no escritório e home office, transição ágil entre múltiplos dispositivos e total controle de privacidade."
-        },
-        {
-          image: imgLinkhubRecursos,
-          caption: "Vitrine de Recursos & Interface: Importação massiva (CSV, HTML, PDF, DOCX, JSON), favoritos com estrela, contadores de cliques (Top Links), busca instantânea e drag-and-drop."
-        },
-        {
-          image: imgLinkhubCartaoVisita,
-          caption: "Estúdio de Cartão de Visitas Digital & vCard: Geração de cartões executivos (1200x630 PNG), compartilhamento social instantâneo no WhatsApp e URLs curtas amigáveis estilo LinkedIn."
-        }
-      ]
-    },
-    {
+{
       title: "Guardião Nacional - Plataforma Cívica de Alerta e Segurança Comunitária",
       description: "Ecossistema mobile e web em tempo real para monitoramento colaborativo de riscos climáticos, desastres naturais, alertas de emergência geolocalizados e rotas seguras para abrigos em todo o território nacional.",
       image: imgGuardiaoCapa,
@@ -129,6 +92,7 @@ const PortfolioSection = ({ openChat }) => {
       ],
       gradient: "from-blue-600 via-sky-700 to-slate-900",
       featured: true,
+      heroFeatured: true,
       problem: "No Brasil, eventos climáticos extremos e situações de emergência urbana afetam milhões de cidadãos que sofrem com a falta de informações georreferenciadas em tempo real sobre áreas de alagamento, deslizamentos, bloqueios viários e localização imediata de abrigos seguros homologados.",
       skillsUsed: "Arquitetura e engenharia full-stack de ecossistema resiliente de missão crítica: aplicativo mobile (React Native/Expo com TypeScript) e portal web progressivo. Integração em tempo real com Firebase (Firestore, Cloud Functions, FCM e Storage), mapeamento geoespacial vetorial de alto desempenho (Leaflet / OpenStreetMap) com clustering dinâmico de ocorrências, ingestão de dados meteorológicos e radares em tempo real, fluxo colaborativo de reporte de incidentes com validação por reputação comunitária, cálculo de rotas de evacuação offline-first e rigoroso cumprimento de privacidade LGPD.",
       galleryImages: [
@@ -155,6 +119,44 @@ const PortfolioSection = ({ openChat }) => {
       ]
     },
     {
+      title: "LinkHub Cloud - Soberania de Dados, Cartão de Visitas Digital & Central de Documentos",
+      description: "Plataforma PWA offline-first de alta performance para organização de links corporativos, cartões de visitas digitais (1200x630 PNG / vCard) e compartilhamento soberano de documentos salvos diretamente no Google Drive do usuário (sem intermediação de servidores proprietários e em conformidade estrita com a LGPD/GDPR).",
+      image: imgLinkhubCapa,
+      tags: ["React 19", "TypeScript", "Vite", "Zustand", "TailwindCSS", "Google Drive API v3", "OAuth 2.0 GIS", "PWA Offline", "CRDT-Style Sync", "Firebase Hosting", "Firestore REST", "LGPD/GDPR", "Vitest (113 testes)"],
+      links: [
+        { label: "Acessar Aplicação", url: "https://linkhub.cloudmatrix.com.br", icon: ExternalLink },
+        { label: "Ver Código no GitHub", url: "https://github.com/manuelportelaneto/linkhub", icon: Github },
+        { label: "Ver Galeria & Arquitetura", icon: Layers, isGalleryButton: true }
+      ],
+      gradient: "from-cyan-600 via-blue-700 to-indigo-950",
+      featured: true,
+      heroFeatured: false,
+      problem: "Gerenciadores de links tradicionais (como Linktree e agregadores SaaS) impõem dependência (lock-in), monetizam dados dos usuários através de rastreadores invasivos, perdem links por exclusões conflitantes, e exigem o envio de documentos confidenciais para servidores de terceiros vulneráveis. Além disso, profissionais e equipes corporativas enfrentam sobrecarga crônica de abas no navegador (tab overload) e ausência de uma ferramenta unificada para cartões digitais profissionais com vCard de alta fidelidade.",
+      skillsUsed: "Desenvolvimento full-stack de ponta a ponta: SPA reativa e PWA instalável com React 19, TypeScript, Vite, Zustand e TailwindCSS; integração avançada com Google Identity Services (OAuth 2.0) sob o princípio de menor privilégio (escopo estrito drive.file); arquitetura de Soberania Total onde todos os dados e arquivos corporativos são custodiados exclusivamente no Google Drive do usuário; motor de sincronização bidirecional offline estilo CRDT com tombstones para prevenção rigorosa de exclusões indevidas; Business Card Studio integrado capaz de gerar cartões de apresentação executivos em alta resolução (1200x630 PNG) com vCard (.vcf) e QR Code; distribuição na borda global com Firebase Hosting Edge CDN, Cloudflare DNS, HSTS Preload e cabeçalhos de blindagem de segurança; Perfil Público opcional desacoplado com Firestore REST e URLs curtas amigáveis (/p/:username); motor dinâmico de contraste WCAG 2.1; internacionalização em 4 idiomas (PT, EN, ES, FR) e suíte com mais de 113 testes automatizados em Vitest cobrindo sync, sanitização XSS e contraste.",
+      galleryImages: [
+        {
+          image: imgLinkhubCapa,
+          caption: "Capa Oficial & Preview Social: Plataforma soberana de links, documentos e cartão de visitas digital com identidade executiva moderna."
+        },
+        {
+          image: imgLinkhubArquitetura,
+          caption: "Diagrama de Arquitetura do Sistema: Fluxo integrado entre Cliente PWA (React 19 + Zustand), Borda Segura (Firebase Edge CDN), Google Identity OAuth e Cofre Soberano no Google Drive."
+        },
+        {
+          image: imgLinkhubCasosDeUso,
+          caption: "Infográfico de Casos de Uso Diários: Fim da sobrecarga de abas de trabalho no escritório e home office, transição ágil entre múltiplos dispositivos e total controle de privacidade."
+        },
+        {
+          image: imgLinkhubRecursos,
+          caption: "Vitrine de Recursos & Interface: Importação massiva (CSV, HTML, PDF, DOCX, JSON), favoritos com estrela, contadores de cliques (Top Links), busca instantânea e drag-and-drop."
+        },
+        {
+          image: imgLinkhubCartaoVisita,
+          caption: "Estúdio de Cartão de Visitas Digital & vCard: Geração de cartões executivos (1200x630 PNG), compartilhamento social instantâneo no WhatsApp e URLs curtas amigáveis estilo LinkedIn."
+        }
+      ]
+    },
+        {
       title: "Cloud Matrix AI Hub (Privacidade & FinOps IA)",
       description: "Gateway corporativo e suíte unificada para inferência e treinamento de LLMs híbridos (Groq LPU, BitNet 1-bit CPU e Ollama), garantindo 100% de privacidade dos dados internos e redução drástica de custos.",
       image: imgCloudMatrixHubDesktop,
@@ -164,6 +166,7 @@ const PortfolioSection = ({ openChat }) => {
       ],
       gradient: "from-green-600 to-emerald-950",
       featured: true,
+      heroFeatured: false,
       problem: "Empresas enfrentam dilemas severos ao adotar IA generativa: custos proibitivos de assinaturas/APIs de terceiros e alto risco de vazamento de dados estratégicos e confidenciais ao enviar prompts para servidores externos (risco LGPD e perda de segredo industrial).",
       skillsUsed: "Desenvolvimento de API Gateway assíncrono em FastAPI (OpenAI-compatible) com roteamento inteligente entre instâncias ultrarrápidas em Groq LPU e motores locais 1-bit (BitNet b1.58 / Ollama) na CPU sem necessidade de GPUs caras. Implementação de banco assíncrono SQLite, síntese de voz masculina equalizada (TTS), ditado contínuo (STT), Progressive Web App (PWA) e túnel Zero-Trust via Cloudflare Tunnel.",
       galleryImages: [
@@ -442,30 +445,34 @@ const PortfolioSection = ({ openChat }) => {
     },
   ];
 
-  const ProjectCard = ({ project, onCardClick }) => (
-    <div className={`card group ${project.featured ? 'md:col-span-2' : ''} hover:transform hover:scale-[1.02] transition-all duration-500`}>
-      <div className="mb-6">
-        <button onClick={() => onCardClick(project)} className="w-full text-left focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
-          <div className={`w-full h-48 ${project.featured ? 'md:h-64' : ''} bg-gradient-to-br ${project.gradient} rounded-lg mb-4 flex items-center justify-center relative overflow-hidden`}>
-            <div className="absolute inset-0 bg-black/30"></div>
-            {project.videoUrl ? (
-              <div className="absolute inset-0 w-full h-full pointer-events-none">
-                <iframe src={project.videoUrl} title={project.title} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full h-full" ></iframe>
-              </div>
-            ) : project.image ? (
-              <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-            ) : (
-              <div className="text-white text-3xl font-bold z-10 opacity-80">{project.letter || project.title.charAt(0)}</div>
-            )}
-            {project.featured && (
-              <div className="absolute top-4 right-4 bg-primary-500 text-white px-3 py-1 rounded-full text-sm font-medium z-10">Destaque</div>
-            )}
-          </div>
-        </button>
-        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary-400 transition-colors">{project.title}</h3>
-        <p className="text-gray-400 leading-relaxed">{project.description}</p>
-      </div>
-      <div className="mb-6">
+  const ProjectCard = ({ project, onCardClick }) => {
+    const isHeroFullWidth = project.heroFeatured;
+
+    return (
+      <div className={`card group ${isHeroFullWidth ? 'md:col-span-2' : ''} hover:transform hover:scale-[1.02] transition-all duration-500 flex flex-col justify-between`}>
+        <div className="mb-6">
+          <button onClick={() => onCardClick(project)} className="w-full text-left focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
+            <div className={`w-full ${isHeroFullWidth ? 'h-56 md:h-72' : 'h-48 md:h-52'} bg-gradient-to-br ${project.gradient} rounded-lg mb-4 flex items-center justify-center relative overflow-hidden`}>
+              <div className="absolute inset-0 bg-black/30"></div>
+              {project.videoUrl ? (
+                <div className="absolute inset-0 w-full h-full pointer-events-none">
+                  <iframe src={project.videoUrl} title={project.title} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full h-full" ></iframe>
+                </div>
+              ) : project.image ? (
+                <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+              ) : (
+                <div className="text-white text-3xl font-bold z-10 opacity-80">{project.letter || project.title.charAt(0)}</div>
+              )}
+              {project.featured && (
+                <div className="absolute top-4 right-4 bg-primary-500 text-white px-3 py-1 rounded-full text-sm font-medium z-10">Destaque</div>
+              )}
+            </div>
+          </button>
+          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary-400 transition-colors">{project.title}</h3>
+          <p className="text-gray-400 leading-relaxed text-sm line-clamp-3">{project.description}</p>
+        </div>
+        <div>
+          <div className="mb-6">
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag, tagIndex) => (<span key={tagIndex} className="px-3 py-1 bg-gray-800 border border-gray-700 rounded-full text-xs text-gray-300 hover:border-primary-500 hover:text-primary-400 transition-all duration-300">{tag}</span>))}
         </div>
@@ -514,8 +521,10 @@ const PortfolioSection = ({ openChat }) => {
           );
         })}
       </div>
+      </div>
     </div>
   );
+};
 
   return (
     <section id="portfolio" className="py-20 bg-gray-950">
