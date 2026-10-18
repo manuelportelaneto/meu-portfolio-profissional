@@ -36,6 +36,13 @@ import imgFabricaCortesCapa from '../../assets/projects/fabrica-cortes-capa.png'
 import imgFabricaCortesArq from '../../assets/projects/fabrica-cortes-arquitetura.png';
 import imgCloudMatrixHubDesktop from '../../assets/projects/cloudmatrix-hub-desktop.png';
 import imgCloudMatrixHubMobile from '../../assets/projects/cloudmatrix-hub-mobile.png';
+// Importações LinkHub Cloud
+import imgLinkhubCapa from '../../assets/projects/linkhub-capa.jpg';
+import imgLinkhubArquitetura from '../../assets/projects/linkhub-arquitetura.jpg';
+import imgLinkhubCasosDeUso from '../../assets/projects/linkhub-casos-de-uso.jpg';
+import imgLinkhubRecursos from '../../assets/projects/linkhub-recursos.jpg';
+import imgLinkhubCartaoVisita from '../../assets/projects/linkhub-cartao-visita.jpg';
+
 // Importações Guardião Nacional
 import imgGuardiaoCapa from '../../assets/projects/guardiao-capa.jpg';
 import imgGuardiaoMapaPrincipal from '../../assets/projects/guardiao-mapa-principal.jpeg';
@@ -73,6 +80,43 @@ const PortfolioSection = ({ openChat }) => {
   };
 
   const projects = [
+    {
+      title: "LinkHub Cloud - Soberania de Dados, Cartão de Visitas Digital & Central de Documentos",
+      description: "Plataforma PWA offline-first de alta performance para organização de links corporativos, cartões de visitas digitais (1200x630 PNG / vCard) e compartilhamento soberano de documentos salvos diretamente no Google Drive do usuário (sem intermediação de servidores proprietários e em conformidade estrita com a LGPD/GDPR).",
+      image: imgLinkhubCapa,
+      tags: ["React 19", "TypeScript", "Vite", "Zustand", "TailwindCSS", "Google Drive API v3", "OAuth 2.0 GIS", "PWA Offline", "CRDT-Style Sync", "Firebase Hosting", "Firestore REST", "LGPD/GDPR", "Vitest (113 testes)"],
+      links: [
+        { label: "Acessar Aplicação", url: "https://linkhub.cloudmatrix.com.br", icon: ExternalLink },
+        { label: "Ver Código no GitHub", url: "https://github.com/manuelportelaneto/linkhub", icon: Github },
+        { label: "Ver Galeria & Arquitetura", icon: Layers, isGalleryButton: true }
+      ],
+      gradient: "from-cyan-600 via-blue-700 to-indigo-950",
+      featured: true,
+      problem: "Gerenciadores de links tradicionais (como Linktree e agregadores SaaS) impõem dependência (lock-in), monetizam dados dos usuários através de rastreadores invasivos, perdem links por exclusões conflitantes, e exigem o envio de documentos confidenciais para servidores de terceiros vulneráveis. Além disso, profissionais e equipes corporativas enfrentam sobrecarga crônica de abas no navegador (tab overload) e ausência de uma ferramenta unificada para cartões digitais profissionais com vCard de alta fidelidade.",
+      skillsUsed: "Desenvolvimento full-stack de ponta a ponta: SPA reativa e PWA instalável com React 19, TypeScript, Vite, Zustand e TailwindCSS; integração avançada com Google Identity Services (OAuth 2.0) sob o princípio de menor privilégio (escopo estrito drive.file); arquitetura de Soberania Total onde todos os dados e arquivos corporativos são custodiados exclusivamente no Google Drive do usuário; motor de sincronização bidirecional offline estilo CRDT com tombstones para prevenção rigorosa de exclusões indevidas; Business Card Studio integrado capaz de gerar cartões de apresentação executivos em alta resolução (1200x630 PNG) com vCard (.vcf) e QR Code; distribuição na borda global com Firebase Hosting Edge CDN, Cloudflare DNS, HSTS Preload e cabeçalhos de blindagem de segurança; Perfil Público opcional desacoplado com Firestore REST e URLs curtas amigáveis (/p/:username); motor dinâmico de contraste WCAG 2.1; internacionalização em 4 idiomas (PT, EN, ES, FR) e suíte com mais de 113 testes automatizados em Vitest cobrindo sync, sanitização XSS e contraste.",
+      galleryImages: [
+        {
+          image: imgLinkhubCapa,
+          caption: "Capa Oficial & Preview Social: Plataforma soberana de links, documentos e cartão de visitas digital com identidade executiva moderna."
+        },
+        {
+          image: imgLinkhubArquitetura,
+          caption: "Diagrama de Arquitetura do Sistema: Fluxo integrado entre Cliente PWA (React 19 + Zustand), Borda Segura (Firebase Edge CDN), Google Identity OAuth e Cofre Soberano no Google Drive."
+        },
+        {
+          image: imgLinkhubCasosDeUso,
+          caption: "Infográfico de Casos de Uso Diários: Fim da sobrecarga de abas de trabalho no escritório e home office, transição ágil entre múltiplos dispositivos e total controle de privacidade."
+        },
+        {
+          image: imgLinkhubRecursos,
+          caption: "Vitrine de Recursos & Interface: Importação massiva (CSV, HTML, PDF, DOCX, JSON), favoritos com estrela, contadores de cliques (Top Links), busca instantânea e drag-and-drop."
+        },
+        {
+          image: imgLinkhubCartaoVisita,
+          caption: "Estúdio de Cartão de Visitas Digital & vCard: Geração de cartões executivos (1200x630 PNG), compartilhamento social instantâneo no WhatsApp e URLs curtas amigáveis estilo LinkedIn."
+        }
+      ]
+    },
     {
       title: "Guardião Nacional - Plataforma Cívica de Alerta e Segurança Comunitária",
       description: "Ecossistema mobile e web em tempo real para monitoramento colaborativo de riscos climáticos, desastres naturais, alertas de emergência geolocalizados e rotas seguras para abrigos em todo o território nacional.",

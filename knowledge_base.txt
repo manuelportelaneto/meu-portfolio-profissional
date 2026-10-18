@@ -76,6 +76,11 @@
 
         ## DETALHES DOS PROJETOS PRINCIPAIS
 
+        ### Projeto: LinkHub Cloud (Soberania de Dados, Cartão de Visitas Digital & Central de Documentos)
+        - Problema Resolvido: Plataformas tradicionais de agregação de links (Linktree, etc.) e favoritos impõem vendor lock-in, monetizam dados dos usuários através de rastreadores invasivos, perdem links por exclusões conflitantes e exigem servidores terceiros vulneráveis para armazenamento de documentos corporativos.
+        - Solução Técnica: Aplicação PWA de alta performance construída com React 19, Vite, TypeScript, Zustand e TailwindCSS. Utiliza arquitetura descentralizada com armazenamento direto no Google Drive do usuário via Google Drive API v3 (OAuth 2.0 GIS com escopo estrito de menor privilégio drive.file), sincronização bidirecional estilo CRDT com tombstones para prevenção de perdas de dados offline, estúdio de cartões de visitas digitais em 1200x630 PNG com vCard dinâmico, URLs curtas de perfil estilo LinkedIn (/p/:username) desacopladas via Firebase Hosting e Firestore REST, e mais de 113 testes automatizados (Vitest).
+        - Impacto no Negócio: 100% de soberania e privacidade de dados para profissionais e empresas (conformidade total com LGPD/GDPR), zero custo recorrente de banco de dados para a coleção privada do usuário, e eliminação de sobrecarga de abas de trabalho. Disponível em produção em https://linkhub.cloudmatrix.com.br e código aberto em https://github.com/manuelportelaneto/linkhub.
+
         ### Projeto: Provisionamento de Recursos em Nuvem
         - Problema Resolvido: Algumas empresas precisavam de uma forma rápida e replicável para criar ambientes em múltiplas nuvens (Azure, GCP, AWS), reduzindo o tempo de setup manual.
         - Solução Técnica: Criação de scripts de Infraestrutura como Código (IaC) com Terraform e orquestração de contêineres com Kubernetes.
